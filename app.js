@@ -145,6 +145,27 @@ function home() {
         '<img class="hover-preview" src="',mediaFile(p.cover),'" alt="" loading="',i<2?'eager':'lazy','">',
         '</a></article>'
       ].join('')).join(''),
+      '<article class="archive-index-row">',
+        '<a class="archive-index-link" href="#/archive" aria-label="Explore archive: photographs, films and visual fragments">',
+          '<div class="archive-index-copy">',
+            '<span class="archive-index-number micro">04 / THE OTHER STUFF</span>',
+            '<div class="archive-index-heading">',
+              '<h2 class="archive-index-title">Archive<span class="archive-index-period">.</span></h2>',
+              '<p class="archive-index-intro">Some things don’t fit into a project.<br>They still deserve to be seen.</p>',
+            '</div>',
+            '<span class="archive-index-action micro">TAKE A LOOK <span aria-hidden="true">↗</span></span>',
+          '</div>',
+          '<div class="archive-index-montage" aria-hidden="true">',
+            '<img class="archive-index-shot archive-index-shot-a" src="',mediaFile('another project21.jpg'),'" alt="" loading="lazy" decoding="async">',
+            '<img class="archive-index-shot archive-index-shot-b" src="',mediaFile('another project11.jpg'),'" alt="" loading="lazy" decoding="async">',
+            '<div class="archive-index-shot archive-index-shot-c">',
+              '<video class="archive-index-video" src="',mediaFile('video1.mp4'),'" poster="',mediaFile('another project 33.jpg'),'" muted loop playsinline preload="none"></video>',
+            '</div>',
+            '<img class="archive-index-shot archive-index-shot-d" src="',mediaFile('another project 27.jpg'),'" alt="" loading="lazy" decoding="async">',
+            '<span class="archive-index-stamp">',String(ARCHIVE_MEDIA.length).padStart(2,'0'),' FRAGMENTS <span aria-hidden="true">✳</span></span>',
+          '</div>',
+        '</a>',
+      '</article>',
     '</section>',
     '<section class="contact-board" id="contact" aria-label="About, clients and contact">',
       '<div class="contact-board-grid">',
@@ -192,6 +213,20 @@ function home() {
   ].join('');
   navigation('index');
   initBerlinClock();
+  initArchiveTeaser();
+}
+function initArchiveTeaser() {
+  const teaser = root.querySelector('.archive-index-link');
+  const video = teaser?.querySelector('.archive-index-video');
+  if (!teaser || !video || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  const start = () => video.play().catch(() => {});
+  const stop = () => video.pause();
+  teaser.addEventListener('pointerenter', event => {
+    if (event.pointerType === 'mouse' || event.pointerType === 'pen') start();
+  });
+  teaser.addEventListener('pointerleave', stop);
+  teaser.addEventListener('focusin', start);
+  teaser.addEventListener('focusout', stop);
 }
 function gallery(p) {
   return p.media.map((file,i) => {
@@ -325,7 +360,7 @@ function initArchiveVideos() {
 function render() {
   if (berlinClockInterval) { clearInterval(berlinClockInterval); berlinClockInterval = null; }
   if (archiveObserver) { archiveObserver.disconnect(); archiveObserver = null; }
-  root.querySelectorAll('.archive-video').forEach(video => video.pause());
+  root.querySelectorAll('.archive-video, .archive-index-video').forEach(video => video.pause());
   const path = decodeURIComponent(location.hash.replace(/^#\/?/, '')).replace(/\/+$/, '');
   const match = path.match(/^project\/(\d{2})$/);
   if (match) {
