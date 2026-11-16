@@ -240,3 +240,18 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .about-copy p { font-size: 21px; line-height: 1.31; }
   .about-copy p.about-lead { font-size: 28px; line-height: 1.19; }
 }
+
+/* Remove superfluous header and portfolio-index labels while retaining navigation. */
+.site-header { grid-template-columns:minmax(0,1fr) auto; }
+.hero-overline { justify-content:flex-end; }
+.hero-overline .right { margin-left:auto; }
+.about-strip .about-content { max-width:550px; }
+.about-strip .about-content p { font-size:clamp(17px,1.65vw,25px); line-height:1.33; margin-bottom:24px; }
+.about-strip .about-content em, .about-copy em { font-family:var(--serif); font-weight:400; }
+@media (max-width:900px) {
+  .site-header { grid-template-columns:minmax(0,1fr) auto; }
+}
+@media (max-width:620px) {
+  .site-header { grid-template-columns:minmax(0,1fr) auto; }
+  .about-strip .about-content p { font-size:20px; line-height:1.32; }
+}
