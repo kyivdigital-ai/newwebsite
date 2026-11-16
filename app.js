@@ -1,13 +1,39 @@
 /**
- * Replace the five placeholder archive groups with your actual projects.
- * The source repository contains numbered media files, not case-study metadata.
+ * Confirmed projects from the organized repository.
+ * "another project" assets remain untouched and unpublished until assigned.
+ * 2-byte .mp4 placeholders are excluded from galleries.
  */
 const PROJECTS = [
-  {id:'01', title:'Archive I', category:'SELECTED VISUALS', role:'TO BE ADDED', year:'—', description:'A selection of images and moving-image work from the archive.', cover:'3.jpg', media:['1.mp4','2.mp4','3.jpg','4.jpg','5.mp4','6.jpg','7.jpg','8.jpg','9.mp4']},
-  {id:'02', title:'Archive II', category:'SELECTED VISUALS', role:'TO BE ADDED', year:'—', description:'A selection of images and moving-image work from the archive.', cover:'12.jpg', media:['10.jpg','11.jpg','12.jpg','13.jpg','14.jpg','15.jpg','16.jpg','17.mp4','18.jpg','19.jpg']},
-  {id:'03', title:'Archive III', category:'SELECTED VISUALS', role:'TO BE ADDED', year:'—', description:'A selection of images and moving-image work from the archive.', cover:'22.jpg', media:['20.jpg','21.mp4','22.jpg','23.jpg','24.jpg','25.mp4','26.jpg','27.mp4','28.jpg','29.jpg']},
-  {id:'04', title:'Archive IV', category:'SELECTED VISUALS', role:'TO BE ADDED', year:'—', description:'A selection of images from the archive.', cover:'33.jpg', media:['30.jpg','31.jpg','32.jpg','33.jpg','34.jpg','35.jpg','36.jpg','37.jpg','38.jpg','39.jpg']},
-  {id:'05', title:'Archive V', category:'SELECTED VISUALS', role:'TO BE ADDED', year:'—', description:'A selection of images and moving-image work from the archive.', cover:'43.jpg', media:['40.mp4','41.jpg','42.jpg','43.jpg','44.jpg','45.jpg','46.jpg','47.jpg','48.jpg','49.jpg','50.jpg','51.jpg']}
+  {
+    id:'01',
+    title:'PDF Magazine',
+    category:'EDITORIAL / PUBLISHING',
+    role:'—',
+    year:'—',
+    description:'Selected images from the PDF Magazine project.',
+    cover:'project pdf 1.2.jpg',
+    media:['project pdf 1.jpg','project pdf 1.1.jpg','project pdf 1.2.jpg','project pdf 1.3.jpg']
+  },
+  {
+    id:'02',
+    title:'Hatice Schmidt',
+    category:'VISUAL PROJECT',
+    role:'—',
+    year:'—',
+    description:'Selected visual work for Hatice Schmidt.',
+    cover:'project hatice schmidt 2.3.jpg',
+    media:['project hatice 2.1.mp4','project hatice 2.2.jpg','project hatice schmidt 2.3.jpg']
+  },
+  {
+    id:'03',
+    title:'Ukraine Design Week',
+    category:'DESIGN PROJECT',
+    role:'—',
+    year:'—',
+    description:'Selected visual work for Ukraine Design Week.',
+    cover:'project ukraine design 3.2.jpg',
+    media:['project ukraine design 3.2.jpg']
+  }
 ];
 const root = document.getElementById('main-content');
 document.getElementById('year').textContent = String(new Date().getFullYear());
@@ -24,12 +50,12 @@ function home() {
   document.title = 'Stanislav — Selected Work';
   root.innerHTML = [
     '<section class="hero" aria-label="Introduction">',
-      '<div class="hero-overline micro"><span>(01 — 05) / PORTFOLIO INDEX</span><span class="right">ART DIRECTION<br>EDITORIAL & VISUAL DESIGN</span></div>',
+      '<div class="hero-overline micro"><span>(01 — 03) / PORTFOLIO INDEX</span><span class="right">ART DIRECTION<br>EDITORIAL & VISUAL DESIGN</span></div>',
       '<div class="hero-center"><h1>Selected<br><span class="italic">work.</span></h1>',
       '<div class="hero-intro">An independent creative practice working across images, editorial and visual culture.<span class="micro">SCROLL TO EXPLORE ↓</span></div></div>',
     '</section>',
     '<section class="work-list" id="work" aria-label="Selected work">',
-      '<div class="work-header micro"><span>INDEX / FIVE SELECTED SECTIONS</span><span>2026 — PRESENT</span></div>',
+      '<div class="work-header micro"><span>INDEX / SELECTED PROJECTS</span><span>SELECTED WORK</span></div>',
       PROJECTS.map((p,i) => [
         '<article class="work-row"><a class="work-link" href="', route(p.id), '" aria-label="Open ', e(p.title), '">',
         '<span class="work-index micro">',p.id,'</span>',
@@ -65,7 +91,7 @@ function project(p) {
   document.title = p.title + ' — Stanislav';
   root.innerHTML = [
     '<article class="case">',
-      '<div class="case-topline"><a class="back-button" href="#/"><span class="arrow">←</span> BACK TO INDEX</a><span class="micro">PROJECT ',p.id,' / 05</span></div>',
+      '<div class="case-topline"><a class="back-button" href="#/"><span class="arrow">←</span> BACK TO INDEX</a><span class="micro">PROJECT ',p.id,' / '+String(PROJECTS.length).padStart(2,'0')+'</span></div>',
       '<header class="case-head"><h1 class="case-title">',e(p.title),'</h1><div class="case-deck">',e(p.description),'</div></header>',
       '<div class="case-meta project-meta">',
         '<div><span class="meta-key">PROJECT</span><span class="meta-value">',e(p.title),'</span></div>',
@@ -74,7 +100,7 @@ function project(p) {
         '<div><span class="meta-key">YEAR</span><span class="meta-value">',e(p.year),'</span></div>',
       '</div><div class="case-gallery">',gallery(p),'</div>',
       '<a href="',route(next.id),'" class="next-project" aria-label="Next project: ',e(next.title),'">',
-        '<span class="next-label micro"><span>NEXT PROJECT</span><span>',next.id,' / 05 ↗</span></span>',
+        '<span class="next-label micro"><span>NEXT PROJECT</span><span>',next.id,' / '+String(PROJECTS.length).padStart(2,'0')+' ↗</span></span>',
         '<h2><span>',e(next.title),' ↗</span></h2>',
       '</a>',
     '</article>'
