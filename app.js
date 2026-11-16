@@ -12,7 +12,7 @@ const PROJECTS = [
     year:'2025–2026',
     description:'PDF is a magazine about music and art. Inspired by the visual language of early issues of The Face, I developed the complete editorial design for Issues 01 and 02 (2025–2026).',
     cover:'project pdf 1.2.jpg',
-    media:['project pdf 1.jpg','project pdf 1.1.jpg','project pdf 1.2.jpg','project pdf 1.3.jpg']
+    media:['project pdf 1.jpg','project pdf 1.1.jpg','project pdf 1.2.jpg','project pdf 1.3.jpg','project pdf 1.4.jpg','project pdf 1.5.jpg','project pdf 1.6.jpg','project pdf 1.7.jpg','project pdf 1.8.mp4']
   },
   {
     id:'02',
@@ -22,7 +22,7 @@ const PROJECTS = [
     year:'—',
     description:'Selected visual work for Hatice Schmidt.',
     cover:'project hatice schmidt 2.3.jpg',
-    media:['project hatice 2.1.mp4','project hatice 2.2.jpg','project hatice schmidt 2.3.jpg']
+    media:['project hatice.mp4','project hatice 2.2.jpg','project hatice schmidt 2.3.jpg']
   },
   {
     id:'03',
@@ -32,9 +32,54 @@ const PROJECTS = [
     year:'—',
     description:'Selected visual work for Ukraine Design Week.',
     cover:'project ukraine design 3.2.jpg',
-    media:['project ukraine design 3.2.jpg']
+    media:['project ukraine design 3.2.jpg','project ukraine design 3.3.mp4']
   }
 ];
+
+// A deliberately mixed photographic / moving-image archive.
+// Edit this list to change the order or include new uploaded files.
+// Duplicated source videos and invalid 2-byte uploads are excluded.
+const ARCHIVE_MEDIA = [
+  'another project21.jpg',
+  'another project11.jpg',
+  'another project 27.jpg',
+  'video1.mp4',
+  'another project18.jpg',
+  'another project2.jpg',
+  'another project13.jpg',
+  'another project 15.jpg',
+  'video6.mp4',
+  'another project 23.jpg',
+  'another project 33.jpg',
+  'another project6.jpg',
+  'another project 24.jpg',
+  'video2.mp4',
+  'another project8.jpg',
+  'another project25.jpg',
+  'another project35.jpg',
+  'another project20.jpg',
+  'video7.mp4',
+  'another project3.jpg',
+  'another project14.jpg',
+  'another project29.jpg',
+  'another project4.jpg',
+  'video8.mp4',
+  'another project 32.jpg',
+  'another project 30.jpg',
+  'another project5.jpg',
+  'another project 34.jpg',
+  'video4.mp4',
+  'another project10.jpg',
+  'another project16.jpg',
+  'another project19.jpg',
+  'another project1.jpg',
+  'video3.mp4',
+  'another project28.jpg',
+  'another project31.jpg',
+  'another project23.jpg'
+];
+let archiveObserver = null;
+
 const root = document.getElementById('main-content');
 document.getElementById('year').textContent = String(new Date().getFullYear());
 const e = v => String(v).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -107,6 +152,102 @@ function project(p) {
   ].join('');
   navigation(null);
 }
+
+function archive() {
+  document.title = 'Archive — Stanislav';
+  root.innerHTML = [
+    '<section class="archive-page" aria-label="Visual archive">',
+      '<div class="archive-mast">',
+        '<div class="archive-topline micro"><span>PHOTOGRAPHY / MOVING IMAGE</span><a href="#/">BACK TO INDEX ↗</a></div>',
+        '<h1 class="archive-heading">Archive<span>.</span></h1>',
+        '<p class="archive-intro">An ongoing collection of images, fragments and moving pictures.</p>',
+      '</div>',
+      '<div class="archive-grid">',
+      ARCHIVE_MEDIA.map((file,i) => {
+        const source = mediaFile(file);
+        const n = String(i+1).padStart(2,'0');
+        if (/\.mp4$/i.test(file)) return [
+          '<figure class="archive-item">',
+            '<div class="archive-player">',
+              '<video class="archive-video" src="',source,'" muted loop playsinline preload="none" aria-label="Archive film ',n,'"></video>',
+              '<div class="archive-controls">',
+                '<button type="button" class="archive-play" aria-label="Play archive film ',n,'">PLAY</button>',
+                '<button type="button" class="archive-sound" aria-label="Unmute archive film ',n,'">SOUND OFF</button>',
+              '</div>',
+            '</div>',
+          '</figure>'
+        ].join('');
+        return '<figure class="archive-item"><img src="'+source+'" alt="Archive photograph '+n+'" loading="lazy" decoding="async"></figure>';
+      }).join(''),
+      '</div>',
+      '<a class="archive-return micro" href="#/">← SELECTED WORK</a>',
+    '</section>'
+  ].join('');
+  navigation('archive');
+  initArchiveVideos();
+}
+function initArchiveVideos() {
+  const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = !!(navigator.connection && navigator.connection.saveData);
+  const autoplayAllowed = !reducedMotion && !saveData;
+  const videos = Array.from(root.querySelectorAll('.archive-video'));
+  videos.forEach(video => {
+    video.muted = true;
+    const player = video.closest('.archive-player');
+    const playButton = player.querySelector('.archive-play');
+    const soundButton = player.querySelector('.archive-sound');
+    video.addEventListener('play', () => {
+      playButton.textContent = 'PAUSE';
+      playButton.setAttribute('aria-label','Pause archive video');
+    });
+    video.addEventListener('pause', () => {
+      playButton.textContent = 'PLAY';
+      playButton.setAttribute('aria-label','Play archive video');
+    });
+    playButton.addEventListener('click', () => {
+      if (video.paused) {
+        delete video.dataset.userPaused;
+        video.play().catch(() => {});
+      } else {
+        video.dataset.userPaused = '1';
+        video.pause();
+      }
+    });
+    soundButton.addEventListener('click', () => {
+      const wasMuted = video.muted;
+      videos.forEach(other => { other.muted = true; });
+      root.querySelectorAll('.archive-sound').forEach(button => {
+        button.textContent = 'SOUND OFF';
+        button.setAttribute('aria-label','Unmute archive video');
+      });
+      video.muted = !wasMuted;
+      if (!video.muted) {
+        soundButton.textContent = 'SOUND ON';
+        soundButton.setAttribute('aria-label','Mute archive video');
+        delete video.dataset.userPaused;
+        video.play().catch(() => {});
+      }
+    });
+  });
+  if ('IntersectionObserver' in window) {
+    archiveObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const video = entry.target;
+        if (entry.isIntersecting && autoplayAllowed && video.dataset.userPaused !== '1') {
+          video.play().catch(() => {});
+        } else if (!entry.isIntersecting) {
+          video.pause();
+          video.muted = true;
+          const sound = video.closest('.archive-player').querySelector('.archive-sound');
+          sound.textContent = 'SOUND OFF';
+          sound.setAttribute('aria-label','Unmute archive video');
+        }
+      });
+    }, {threshold:0.25, rootMargin:'40px 0px 40px 0px'});
+    videos.forEach(video => archiveObserver.observe(video));
+  }
+}
+
 function about() {
   document.title = 'About — Stanislav';
   root.innerHTML = [
@@ -124,12 +265,15 @@ function about() {
   navigation('about');
 }
 function render() {
+  if (archiveObserver) { archiveObserver.disconnect(); archiveObserver = null; }
+  root.querySelectorAll('.archive-video').forEach(video => video.pause());
   const path = decodeURIComponent(location.hash.replace(/^#\/?/, '')).replace(/\/+$/, '');
   const match = path.match(/^project\/(\d{2})$/);
   if (match) {
     const p = PROJECTS.find(p => p.id === match[1]);
     if (p) project(p); else home();
-  } else if (path === 'about') about();
+  } else if (path === 'archive') archive();
+  else if (path === 'about') about();
   else home();
   window.scrollTo({top:0,behavior:'instant'});
 }
