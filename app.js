@@ -99,7 +99,7 @@ function home() {
       '<div class="hero-intro"><div class="hero-role micro">ART DIRECTION<br>EDITORIAL & VISUAL DESIGN</div><p>Hi, I’m Stanislav Ryabchik, a graphic designer and art director living in Berlin.</p><p>I make identities, publications, websites, digital experiences and things that move.</p></div></div>',
     '</section>',
     '<section class="work-list" id="work" aria-label="Selected work">',
-      '<div class="work-header micro"><span>INDEX / SELECTED PROJECTS</span><span>SELECTED WORK</span></div>',
+      '<div class="work-header micro"><span>INDEX / SELECTED PROJECTS</span></div>',
       PROJECTS.map((p,i) => [
         '<article class="work-row"><a class="work-link" href="', route(p.id), '" aria-label="Open ', e(p.title), '">',
         '<span class="work-index micro">',p.id,'</span>',
