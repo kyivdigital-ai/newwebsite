@@ -255,3 +255,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .site-header { grid-template-columns:minmax(0,1fr) auto; }
   .about-strip .about-content p { font-size:20px; line-height:1.32; }
 }
+
+/* Keep the complete wordmark legible alongside navigation on small screens. */
+.brand { white-space:nowrap; }
+@media (max-width:620px) {
+  .brand { font-size:clamp(11px,3.2vw,14px); }
+}
