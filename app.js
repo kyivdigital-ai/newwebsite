@@ -130,12 +130,7 @@ function initBerlinClock() {
 function home() {
   document.title = 'Stanislav — Selected Work';
   root.innerHTML = [
-    '<section class="hero" aria-label="Introduction">',
-      '<div class="hero-center"><h1>Selected<br><span class="italic">work.</span></h1>',
-      '<div class="hero-intro"><div class="hero-role micro">ART DIRECTION<br>EDITORIAL & VISUAL DESIGN</div><p>Hi, I’m Stanislav Ryabchik, a graphic designer and art director living in Berlin.</p><p>I make identities, publications, websites, digital experiences and things that move.</p></div></div>',
-    '</section>',
     '<section class="work-list" id="work" aria-label="Selected work">',
-      '<div class="work-header micro"><span>INDEX / SELECTED PROJECTS</span></div>',
       PROJECTS.map((p,i) => [
         '<article class="work-row"><a class="work-link" href="', route(p.id), '" aria-label="Open ', e(p.title), '">',
         '<span class="work-index micro">',p.id,'</span>',
