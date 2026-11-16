@@ -618,7 +618,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   cursor: default;
 }
 @media (max-width: 620px) {
-  .archive-index-row .archive-index-link { display: grid; }
+  .archive-index-row .archive-index-link { display: grid; grid-template-rows: auto; }
+  .archive-index-row .archive-index-link .work-label { display: none; }
   .archive-reel-item { height: 175px; }
   .archive-reel-wrap { padding-bottom: 21px; }
   .archive-reel-controls button { width: 34px; height: 34px; }
