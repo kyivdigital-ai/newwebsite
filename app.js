@@ -145,26 +145,27 @@ function home() {
         '<img class="hover-preview" src="',mediaFile(p.cover),'" alt="" loading="',i<2?'eager':'lazy','">',
         '</a></article>'
       ].join('')).join(''),
-      '<article class="archive-index-row">',
-        '<a class="archive-index-link" href="#/archive" aria-label="Explore archive: photographs, films and visual fragments">',
-          '<div class="archive-index-copy">',
-            '<span class="archive-index-number micro">04 / THE OTHER STUFF</span>',
-            '<div class="archive-index-heading">',
-              '<h2 class="archive-index-title">Archive<span class="archive-index-period">.</span></h2>',
-              '<p class="archive-index-intro">Some things don’t fit into a project.<br>They still deserve to be seen.</p>',
-            '</div>',
-            '<span class="archive-index-action micro">TAKE A LOOK <span aria-hidden="true">↗</span></span>',
-          '</div>',
-          '<div class="archive-index-montage" aria-hidden="true">',
-            '<img class="archive-index-shot archive-index-shot-a" src="',mediaFile('another project21.jpg'),'" alt="" loading="lazy" decoding="async">',
-            '<img class="archive-index-shot archive-index-shot-b" src="',mediaFile('another project11.jpg'),'" alt="" loading="lazy" decoding="async">',
-            '<div class="archive-index-shot archive-index-shot-c">',
-              '<video class="archive-index-video" src="',mediaFile('video1.mp4'),'" poster="',mediaFile('another project 33.jpg'),'" autoplay muted loop playsinline preload="none"></video>',
-            '</div>',
-            '<img class="archive-index-shot archive-index-shot-d" src="',mediaFile('another project 27.jpg'),'" alt="" loading="lazy" decoding="async">',
-            '<span class="archive-index-stamp">',String(ARCHIVE_MEDIA.length).padStart(2,'0'),' FRAGMENTS <span aria-hidden="true">✳</span></span>',
-          '</div>',
+      '<article class="work-row archive-index-row">',
+        '<a class="work-link archive-index-link" href="#/archive" aria-label="Open visual archive">',
+          '<span class="work-index micro">04</span>',
+          '<span class="work-title archive-index-title">Archive</span>',
+          '<span class="work-label micro" aria-hidden="true"></span>',
+          '<span class="work-arrow" aria-hidden="true">↗</span>',
         '</a>',
+        '<div class="archive-reel-wrap">',
+          '<div class="archive-reel" id="archive-reel" role="region" aria-label="Scroll through archive photos and videos" tabindex="0">',
+            ARCHIVE_MEDIA.slice(0,14).map((file,i) => {
+              const src = mediaFile(file);
+              const label = 'Open archive item ' + (i+1);
+              if (/\\.mp4$/i.test(file)) return '<a class="archive-reel-item" href="#/archive" aria-label="'+label+'"><video class="archive-index-video" src="'+src+'" autoplay muted loop playsinline preload="none" aria-hidden="true"></video></a>';
+              return '<a class="archive-reel-item" href="#/archive" aria-label="'+label+'"><img src="'+src+'" loading="lazy" decoding="async" alt=""></a>';
+            }).join(''),
+          '</div>',
+          '<div class="archive-reel-controls">',
+            '<button class="archive-reel-prev" type="button" aria-label="Scroll archive images left">←</button>',
+            '<button class="archive-reel-next" type="button" aria-label="Scroll archive images right">→</button>',
+          '</div>',
+        '</div>',
       '</article>',
     '</section>',
     '<section class="contact-board" id="contact" aria-label="About, clients and contact">',
@@ -249,6 +250,24 @@ function initViewportAutoplay(selector) {
 
 function initArchiveTeaser() {
   initViewportAutoplay('.archive-index-video');
+  const track = root.querySelector('#archive-reel');
+  if (!track) return;
+  const previous = root.querySelector('.archive-reel-prev');
+  const next = root.querySelector('.archive-reel-next');
+  const update = () => {
+    previous.disabled = track.scrollLeft < 4;
+    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+  };
+  const move = direction => track.scrollBy({
+    left: direction * Math.max(track.clientWidth * .75, 220),
+    behavior: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
+  });
+  previous.addEventListener('click', () => move(-1));
+  next.addEventListener('click', () => move(1));
+  track.addEventListener('scroll', update, {passive:true});
+  root.querySelectorAll('.archive-reel-item img').forEach(img => img.addEventListener('load', update, {once:true}));
+  root.querySelectorAll('.archive-reel-item video').forEach(video => video.addEventListener('loadedmetadata', update, {once:true}));
+  update();
 }
 function gallery(p) {
   return p.media.map((file,i) => {
