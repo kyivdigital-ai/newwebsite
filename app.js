@@ -202,7 +202,6 @@ function home() {
         '</div>',
       '</div>',
       '<div class="contact-story">',
-        '<p>Hi, I’m Stanislav Ryabchik, a graphic designer and art director. I work with identities, publications, websites, digital experiences and things that move.</p>',
         '<p>My most personal and inspiring project right now is my book, The Little Book That Will Never See the World. I spent three years writing it and built the whole project from scratch — from the editorial design and visual identity to the website and production.</p>',
       '</div>',
     '</section>'
