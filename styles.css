@@ -154,3 +154,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
  .work-link .hover-preview { display:block; position:static; grid-column:2 / 4; grid-row:3; width:100%; aspect-ratio:16/10; object-fit:cover; transform:none; opacity:1; box-shadow:none; pointer-events:none; }
  .work-link:hover .hover-preview { transform:none; }
 }
+
+/* Keep all project galleries strictly image-led: no per-image labels. */
+.gallery-item { margin:0; }
+.case-deck { width: min(100%, 340px); }
+.site-footer { justify-content:flex-start; }
