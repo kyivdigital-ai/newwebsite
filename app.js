@@ -159,7 +159,7 @@ function home() {
             '<img class="archive-index-shot archive-index-shot-a" src="',mediaFile('another project21.jpg'),'" alt="" loading="lazy" decoding="async">',
             '<img class="archive-index-shot archive-index-shot-b" src="',mediaFile('another project11.jpg'),'" alt="" loading="lazy" decoding="async">',
             '<div class="archive-index-shot archive-index-shot-c">',
-              '<video class="archive-index-video" src="',mediaFile('video1.mp4'),'" poster="',mediaFile('another project 33.jpg'),'" muted loop playsinline preload="none"></video>',
+              '<video class="archive-index-video" src="',mediaFile('video1.mp4'),'" poster="',mediaFile('another project 33.jpg'),'" autoplay muted loop playsinline preload="none"></video>',
             '</div>',
             '<img class="archive-index-shot archive-index-shot-d" src="',mediaFile('another project 27.jpg'),'" alt="" loading="lazy" decoding="async">',
             '<span class="archive-index-stamp">',String(ARCHIVE_MEDIA.length).padStart(2,'0'),' FRAGMENTS <span aria-hidden="true">✳</span></span>',
@@ -215,25 +215,47 @@ function home() {
   initBerlinClock();
   initArchiveTeaser();
 }
-function initArchiveTeaser() {
-  const teaser = root.querySelector('.archive-index-link');
-  const video = teaser?.querySelector('.archive-index-video');
-  if (!teaser || !video || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
-  const start = () => video.play().catch(() => {});
-  const stop = () => video.pause();
-  teaser.addEventListener('pointerenter', event => {
-    if (event.pointerType === 'mouse' || event.pointerType === 'pen') start();
+let viewportVideoObserver = null;
+
+// Muted videos play when visible and pause when scrolled away.
+// Native player controls stay available on project case studies.
+function initViewportAutoplay(selector) {
+  const videos = Array.from(root.querySelectorAll(selector));
+  if (!videos.length) return;
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = Boolean(navigator.connection && navigator.connection.saveData);
+  if (reduced || saveData) return;
+  videos.forEach(video => {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
   });
-  teaser.addEventListener('pointerleave', stop);
-  teaser.addEventListener('focusin', start);
-  teaser.addEventListener('focusout', stop);
+  if ('IntersectionObserver' in window) {
+    viewportVideoObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const video = entry.target;
+        if (entry.isIntersecting && document.visibilityState === 'visible') {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }, {threshold: 0.12, rootMargin: '80px 0px 80px 0px'});
+    videos.forEach(video => viewportVideoObserver.observe(video));
+  } else {
+    videos.forEach(video => video.play().catch(() => {}));
+  }
+}
+
+function initArchiveTeaser() {
+  initViewportAutoplay('.archive-index-video');
 }
 function gallery(p) {
   return p.media.map((file,i) => {
     const number = String(i+1).padStart(2,'0');
     let media;
     if (/\.mp4$/i.test(file)) {
-      media = '<video controls muted playsinline preload="none" aria-label="Video '+number+' from '+e(p.title)+'"><source src="'+mediaFile(file)+'" type="video/mp4">Video playback is not supported.</video>';
+      media = '<video class="case-video" controls autoplay muted loop playsinline preload="none" aria-label="Video '+number+' from '+e(p.title)+'"><source src="'+mediaFile(file)+'" type="video/mp4">Video playback is not supported.</video>';
     } else {
       media = '<img src="'+mediaFile(file)+'" alt="'+e(p.title)+', archive image '+number+'" loading="'+(i===0?'eager':'lazy')+'" decoding="async">';
     }
@@ -255,11 +277,12 @@ function project(p) {
       '</div><div class="case-gallery">',gallery(p),'</div>',
       '<a href="',route(next.id),'" class="next-project" aria-label="Next project: ',e(next.title),'">',
         '<span class="next-label micro"><span>NEXT PROJECT</span></span>',
-        '<h2><span>',e(next.title),' ↗</span></h2>',
+        '<h2 class="next-project-title',next.title.length > 16 ? ' next-project-title-long' : '','"><span class="next-project-name">',e(next.title),'</span><span class="next-project-arrow" aria-hidden="true">↗</span></h2>',
       '</a>',
     '</article>'
   ].join('');
   navigation(null);
+  initViewportAutoplay('.case-video');
 }
 
 function archive() {
@@ -278,7 +301,7 @@ function archive() {
         if (/\.mp4$/i.test(file)) return [
           '<figure class="archive-item">',
             '<div class="archive-player">',
-              '<video class="archive-video" src="',source,'" muted loop playsinline preload="none" aria-label="Archive film ',n,'"></video>',
+              '<video class="archive-video" src="',source,'" autoplay muted loop playsinline preload="none" aria-label="Archive film ',n,'"></video>',
               '<div class="archive-controls">',
                 '<button type="button" class="archive-play" aria-label="Play archive film ',n,'">PLAY</button>',
                 '<button type="button" class="archive-sound" aria-label="Unmute archive film ',n,'">SOUND OFF</button>',
@@ -360,7 +383,8 @@ function initArchiveVideos() {
 function render() {
   if (berlinClockInterval) { clearInterval(berlinClockInterval); berlinClockInterval = null; }
   if (archiveObserver) { archiveObserver.disconnect(); archiveObserver = null; }
-  root.querySelectorAll('.archive-video, .archive-index-video').forEach(video => video.pause());
+  if (viewportVideoObserver) { viewportVideoObserver.disconnect(); viewportVideoObserver = null; }
+  root.querySelectorAll('.archive-video, .archive-index-video, .case-video').forEach(video => video.pause());
   const path = decodeURIComponent(location.hash.replace(/^#\/?/, '')).replace(/\/+$/, '');
   const match = path.match(/^project\/(\d{2})$/);
   if (match) {
