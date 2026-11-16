@@ -71,14 +71,32 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 .case-meta { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:18px 0 25px; gap:24px; margin-bottom:clamp(42px,6vw,100px); }
 .case-meta .meta-key { display:block; color:var(--soft); margin-bottom:8px; }
 .case-meta .meta-value { font-size:13px; font-weight:400; letter-spacing:0; }
-.case-gallery { display:grid; grid-template-columns:repeat(12,1fr); gap:clamp(16px,3vw,46px) clamp(12px,2.4vw,36px); }
-.gallery-item { margin:0; min-width:0; grid-column:span 12; }
-.gallery-item.half { grid-column:span 6; }
-.gallery-item.left { grid-column:span 8; }
-.gallery-item.right { grid-column: 5 / span 8; }
-.gallery-item img, .gallery-item video { display:block; width:100%; height:auto; background:#e5e5df; }
-.gallery-item img { object-fit:cover; }
-.gallery-item video { aspect-ratio:16/10; object-fit:cover; }
+/* Project case studies: full-width media, natural proportions, stacked vertically. */
+.case-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3.5vw, 56px);
+}
+.gallery-item {
+  margin: 0;
+  min-width: 0;
+  width: 100%;
+}
+.gallery-item img,
+.gallery-item video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.gallery-item img {
+  object-fit: contain;
+}
+.gallery-item video {
+  object-fit: contain;
+  aspect-ratio: auto;
+  background: #000;
+}
 .image-caption { display:flex; justify-content:space-between; color:var(--soft); margin-top:10px; gap:10px; }
 .next-project { display:block; border-top:1px solid var(--ink); padding:28px 0 0; margin-top:clamp(100px,13vw,220px); }
 .next-project .next-label { display:flex; justify-content:space-between; }
@@ -130,7 +148,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .case-title { font-size:clamp(68px,17vw,118px); }
   .case-deck { justify-self:start; margin:45px 0 0; max-width:300px; }
   .case-meta { grid-template-columns:1fr 1fr; row-gap:22px; }
-  .gallery-item.half,.gallery-item.left,.gallery-item.right { grid-column:span 12; }
   .case-gallery { gap:36px; }
   .next-project h2 { font-size:clamp(53px,13vw,92px); }
   .about-page h1 { font-size:clamp(95px,21vw,160px); }
