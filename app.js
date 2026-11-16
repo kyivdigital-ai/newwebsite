@@ -112,7 +112,7 @@ function home() {
     '</section>',
     '<section class="about-strip" aria-label="About and contact">',
       '<div><span class="eyebrow">ABOUT / THE PRACTICE</span><h2>A personal<br><i>point of view.</i></h2></div>',
-      '<div class="about-content"><p>I’ve worked on commissions and collaborations with Broen Studio, Future Systems Production, Gucci, Hatice Schmidt, PDF Magazine, Rombaut, Sad Gay and Ukrainian Design Week.</p><p>My most personal and inspiring project right now is my book, <em>The Little Book That Will Never See the World</em>. I spent three years writing it and created the whole project from scratch — including the editorial design, visual identity, website and production.</p><a class="micro" href="#/about">MORE ABOUT ME ↗</a></div>',
+      '<div class="about-content"><p>I’ve worked on commissions and collaborations with Broen Studio, Future Systems Production, Gucci, Hatice Schmidt, PDF Magazine, Rombaut, Sad Gay and Ukrainian Design Week.</p><p>My most personal and inspiring project right now is my book, The Little Book That Will Never See the World. I spent three years writing it and created the whole project from scratch — including the editorial design, visual identity, website and production.</p><a class="micro" href="#/about">MORE ABOUT ME ↗</a></div>',
     '</section>'
   ].join('');
   navigation('index');
@@ -256,7 +256,7 @@ function about() {
       '<p class="about-lead">Hi, I’m Stanislav Ryabchik, a graphic designer and art director living in Berlin.</p>',
       '<p>I make identities, publications, websites, digital experiences and things that move.</p>',
       '<p>I’ve worked on commissions and collaborations with Broen Studio, Future Systems Production, Gucci, Hatice Schmidt, PDF Magazine, Rombaut, Sad Gay and Ukrainian Design Week.</p>',
-      '<p>My most personal and inspiring project right now is my book, <em>The Little Book That Will Never See the World</em>. I spent three years writing it and created the whole project from scratch — including its editorial design, visual identity, website and production.</p>',
+      '<p>My most personal and inspiring project right now is my book, The Little Book That Will Never See the World. I spent three years writing it and created the whole project from scratch — including its editorial design, visual identity, website and production.</p>',
       '<div class="about-links micro">',
         '<a class="text-link" href="mailto:hi.stanislavryabchik@gmail.com">EMAIL ↗</a>',
         '<a class="text-link" href="https://www.instagram.com/stanislavryabchik/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a>',
