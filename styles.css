@@ -139,3 +139,18 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .about-copy p { font-size:30px; }
 }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *, *::before, *::after { transition-duration:0.01ms!important; animation-duration:0.01ms!important; } }
+/* Named, multi-word project titles are allowed to wrap without overflow. */
+.work-title { white-space: normal; font-size:clamp(40px,5.1vw,98px); line-height:.9; }
+.work-link { grid-template-columns: .15fr minmax(0,1fr) .3fr 28px; }
+@media (max-width:900px) {
+ .work-link { grid-template-columns:38px minmax(0,1fr) 100px 20px; }
+}
+@media (max-width:620px) {
+ .work-link { grid-template-columns:24px minmax(0,1fr) 20px; grid-template-rows:auto auto auto; padding:26px 0; gap:14px 10px; min-height:0; }
+ .work-index { grid-column:1; grid-row:1; align-self:start; }
+ .work-title { grid-column:2; grid-row:1; font-size:clamp(37px,10vw,62px); }
+ .work-label { grid-column:2; grid-row:2; align-self:start; font-size:9px; }
+ .work-arrow { grid-column:3; grid-row:1; align-self:start; }
+ .work-link .hover-preview { display:block; position:static; grid-column:2 / 4; grid-row:3; width:100%; aspect-ratio:16/10; object-fit:cover; transform:none; opacity:1; box-shadow:none; pointer-events:none; }
+ .work-link:hover .hover-preview { transform:none; }
+}
