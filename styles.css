@@ -455,18 +455,36 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   letter-spacing: -.045em;
   overflow-wrap: anywhere;
 }
-.berlin-clock {
-  display: block;
+.berlin-local {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 3px 8px;
   margin-top: clamp(13px, 1.5vw, 24px);
-  font-size: clamp(14px, 1.1vw, 19px);
-  letter-spacing: -.025em;
-  line-height: 1.3;
   color: var(--soft);
+  font-size: clamp(14px, 1.1vw, 19px);
+  line-height: 1.35;
+  letter-spacing: -.025em;
+}
+.berlin-clock {
+  display: inline;
+  font-size: inherit;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+}
+.berlin-weather { white-space: nowrap; }
+.berlin-weather[hidden], .berlin-weather-credit[hidden] { display: none; }
+.berlin-weather-credit {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 10px;
+  line-height: 1.3;
+  color: var(--soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 @media (max-width: 650px) {
   .contact-client-list, .contact-column-email .contact-social { font-size: 26px; }
   .contact-channel + .contact-channel { margin-top: 42px; }
-  .berlin-clock { font-size: 18px; }
+  .berlin-local { font-size: 18px; }
 }
