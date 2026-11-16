@@ -120,7 +120,6 @@ function home() {
 }
 function gallery(p) {
   return p.media.map((file,i) => {
-    const shape = (i===0 || i%5===0) ? '' : ((i%5===1 || i%5===2) ? 'half' : (i%5===3 ? 'left' : 'right'));
     const number = String(i+1).padStart(2,'0');
     let media;
     if (/\.mp4$/i.test(file)) {
@@ -128,7 +127,7 @@ function gallery(p) {
     } else {
       media = '<img src="'+mediaFile(file)+'" alt="'+e(p.title)+', archive image '+number+'" loading="'+(i===0?'eager':'lazy')+'" decoding="async">';
     }
-    return '<figure class="gallery-item '+shape+'">'+media+'</figure>';
+    return '<figure class="gallery-item">'+media+'</figure>';
   }).join('');
 }
 function project(p) {
