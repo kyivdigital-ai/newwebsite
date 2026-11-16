@@ -109,6 +109,22 @@ function initBerlinClock() {
   };
   update();
   berlinClockInterval = window.setInterval(update, 30000);
+  // Weather is a cached forecast from our same-origin Vercel Function.
+  // If it is unavailable, we keep the clock without an invented temperature.
+  fetch('/api/berlin-weather')
+    .then(response => {
+      if (!response.ok) throw new Error('Forecast not available');
+      return response.json();
+    })
+    .then(data => {
+      const weather = root.querySelector('#berlin-weather');
+      const credit = root.querySelector('#berlin-weather-credit');
+      if (!weather || !credit || !Number.isFinite(data.temperature)) return;
+      weather.textContent = (data.condition || 'Weather') + ' ' + data.temperature + '°';
+      weather.hidden = false;
+      credit.hidden = false;
+    })
+    .catch(() => {});
 }
 
 function home() {
@@ -162,7 +178,11 @@ function home() {
         '<div class="contact-column contact-location">',
           '<h2 class="contact-pill">Location</h2>',
           '<p>Based in Berlin.</p>',
-          '<time class="berlin-clock" id="berlin-clock" aria-label="Current local time in Berlin">--:-- (CET)</time>',
+          '<div class="berlin-local">',
+            '<time class="berlin-clock" id="berlin-clock" aria-label="Current local time in Berlin">--:-- (CET)</time>',
+            '<span class="berlin-weather" id="berlin-weather" hidden></span>',
+          '</div>',
+          '<a class="berlin-weather-credit" id="berlin-weather-credit" href="https://www.met.no/en" target="_blank" rel="noopener noreferrer" hidden>Weather: MET Norway ↗</a>',
         '</div>',
       '</div>',
       '<div class="contact-story">',
