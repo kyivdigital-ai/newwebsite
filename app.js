@@ -97,7 +97,7 @@ function home() {
     '<section class="hero" aria-label="Introduction">',
       '<div class="hero-overline micro"><span>(01 — 03) / PORTFOLIO INDEX</span><span class="right">ART DIRECTION<br>EDITORIAL & VISUAL DESIGN</span></div>',
       '<div class="hero-center"><h1>Selected<br><span class="italic">work.</span></h1>',
-      '<div class="hero-intro">An independent creative practice working across images, editorial and visual culture.<span class="micro">SCROLL TO EXPLORE ↓</span></div></div>',
+      '<div class="hero-intro">Hey, I’m Stanislav Ryabchik — a graphic designer and art director between Berlin and Paris. I make identities, magazines, websites and moving images, with a soft spot for bold type, culture and a little chaos.<span class="micro">SCROLL TO EXPLORE ↓</span></div></div>',
     '</section>',
     '<section class="work-list" id="work" aria-label="Selected work">',
       '<div class="work-header micro"><span>INDEX / SELECTED PROJECTS</span><span>SELECTED WORK</span></div>',
@@ -113,7 +113,7 @@ function home() {
     '</section>',
     '<section class="about-strip" aria-label="About and contact">',
       '<div><span class="eyebrow">ABOUT / THE PRACTICE</span><h2>A personal<br><i>point of view.</i></h2></div>',
-      '<div class="about-content"><p>Stanislav is a Berlin-based creative working with art direction, graphic design, imagery and independent publishing.</p><a class="micro" href="#/about">MORE ABOUT THE PRACTICE ↗</a></div>',
+      '<div class="about-content"><p>Designing things for people to look at, read, click on and feel something about.</p><a class="micro" href="#/about">MORE ABOUT ME ↗</a></div>',
     '</section>'
   ].join('');
   navigation('index');
@@ -248,21 +248,27 @@ function initArchiveVideos() {
 }
 
 function about() {
-  document.title = 'About — Stanislav';
+  document.title = 'About — Stanislav Ryabchik';
   root.innerHTML = [
-    '<section class="about-page"><span class="micro">STANISLAV / INDEPENDENT CREATIVE PRACTICE</span>',
+    '<section class="about-page"><span class="micro">STANISLAV RYABCHIK / GRAPHIC DESIGN & ART DIRECTION</span>',
     '<h1>About<em>.</em></h1><div class="about-columns">',
-    '<div class="micro">BASED IN BERLIN<br>WORKING INTERNATIONALLY</div>',
+    '<div class="micro">BERLIN ↔ PARIS<br>OPEN TO COLLABORATIONS</div>',
     '<div class="about-copy">',
-      '<p>I’m Stanislav, a creative working across art direction, graphic design, editorial projects and independent publishing.</p>',
-      '<p>I am interested in creating distinctive visual worlds through images, typography and storytelling.</p>',
+      '<p class="about-lead">Hey, I’m Stanislav. I’m a graphic designer and art director living between Berlin and Paris. I make identities, magazines, websites, motion and other things that don’t always fit neatly into one category.</p>',
+      '<p>I like bold type, honest imagery, unexpected layouts and the little details that give a project its own personality. My work often circles around culture, identity, memory, queerness and intimacy — sometimes serious, sometimes playful, usually a bit of both.</p>',
+      '<p>I’ve worked with Broen Studio, Future Systems Production, Gucci, Hatice Schmidt, Rombaut, Sad Gay, SOMA, Terra Tint, Ukrainian Design Week and Urban Pulse.</p>',
+      '<p>In 2025, I became Design Director of PDF Magazine, shaping its art direction, editorial system and visual language. I’m also developing Sad Gay, a personal and cultural platform about feelings, queer experience, community and storytelling.</p>',
+      '<p>For me, good design should have a point of view without taking itself too seriously. Got a project or just want to say hello?</p>',
       '<div class="about-links micro">',
-      '<a class="text-link" href="https://www.instagram.com/stnislavski/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a>',
-      '<a class="text-link" href="#/">VIEW SELECTED WORK ↗</a>',
-      '</div></div></div></section>'
+        '<a class="text-link" href="mailto:hi.stanislavryabchik@gmail.com">EMAIL ↗</a>',
+        '<a class="text-link" href="https://www.instagram.com/stanislavryabchik/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a>',
+        '<a class="text-link" href="#/">SELECTED WORK ↗</a>',
+      '</div>',
+    '</div></div></section>'
   ].join('');
   navigation('about');
 }
+
 function render() {
   if (archiveObserver) { archiveObserver.disconnect(); archiveObserver = null; }
   root.querySelectorAll('.archive-video').forEach(video => video.pause());
