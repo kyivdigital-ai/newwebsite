@@ -224,3 +224,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .archive-item:nth-child(6n + 6) { grid-column:4 / span 3; }
   .archive-controls button { min-height:40px; font-size:9px; }
 }
+
+/* Updated introduction and friendlier About copy. */
+.hero-intro { max-width: 365px; }
+.about-copy { max-width: 720px; }
+.about-copy p { font-size: clamp(20px, 2vw, 31px); line-height: 1.28; letter-spacing: -.035em; margin: 0 0 clamp(28px, 4vw, 55px); }
+.about-copy p.about-lead { font-size: clamp(26px, 2.8vw, 43px); line-height: 1.17; letter-spacing: -.05em; }
+.about-links { gap: 22px 30px; padding-top: 8px; }
+.about-links a { white-space: nowrap; }
+@media (max-width: 900px) {
+  .hero-intro { max-width: 450px; }
+}
+@media (max-width: 620px) {
+  .hero-intro { max-width: 310px; font-size: 18px; line-height: 1.37; }
+  .about-copy p { font-size: 21px; line-height: 1.31; }
+  .about-copy p.about-lead { font-size: 28px; line-height: 1.19; }
+}
