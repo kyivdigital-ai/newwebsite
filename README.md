@@ -28,3 +28,14 @@ The `PROJECTS` array in `app.js` contains the displayed project names, cover pho
 No dependencies or build step. The static site works when served from the repository root, for example with GitHub Pages. URLs use hash routing (`#/project/01` etc.) so they can be shared without server-side routing.
 
 The project is in branch `portfolio-editorial-v1`; merge PR #1 into main only after reviewing content.
+
+## Archive
+
+Navigation now includes **ARCHIVE** (`#/archive`): an irregular, responsive gallery of 30 photos and 7 unique videos from the previously unassigned work. Media files are interleaved in a deliberately scattered order.
+
+- Edit `ARCHIVE_MEDIA` at the top of `app.js` to change order or add media later.
+- All video controls are overlaid, with muted play in view, optional sound and pause.
+- Images load lazily; videos pause outside the viewport, and reduced-motion/save-data preferences disable automatic playback.
+- Duplicate video uploads were deduplicated by Git SHA, and 2-byte broken video placeholders excluded.
+
+Project galleries also include newly uploaded PDF Magazine images/video, the renamed Hatice video, and the Ukraine Design Week video.
