@@ -364,13 +364,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 .contact-poster:hover .contact-poster-mark {
   transform: rotate(-4deg) translateX(-.09em);
 }
-.contact-poster-link {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .06em;
-  position: relative;
-  z-index: 2;
-}
 .contact-pill {
   font-family: var(--sans);
   display: inline-block;
@@ -438,4 +431,42 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 }
 @media (prefers-reduced-motion: reduce) {
   .contact-poster-mark { transition: none; }
+}
+
+/* Footer refinements: alphabetical names, separate contact labels and Berlin clock. */
+.contact-poster-mark { margin: auto 0; }
+.contact-client-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: clamp(18px, 1.7vw, 29px);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -.045em;
+}
+.contact-client-list li + li { margin-top: .23em; }
+.contact-channel + .contact-channel { margin-top: clamp(36px, 4vw, 64px); }
+.contact-channel .contact-pill { margin-bottom: clamp(22px, 2vw, 34px); }
+.contact-column-email .contact-social {
+  display: block;
+  margin-top: 0;
+  font-size: clamp(18px, 1.7vw, 29px);
+  line-height: 1.2;
+  letter-spacing: -.045em;
+  overflow-wrap: anywhere;
+}
+.berlin-clock {
+  display: block;
+  margin-top: clamp(13px, 1.5vw, 24px);
+  font-size: clamp(14px, 1.1vw, 19px);
+  letter-spacing: -.025em;
+  line-height: 1.3;
+  color: var(--soft);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+@media (max-width: 650px) {
+  .contact-client-list, .contact-column-email .contact-social { font-size: 26px; }
+  .contact-channel + .contact-channel { margin-top: 42px; }
+  .berlin-clock { font-size: 18px; }
 }
