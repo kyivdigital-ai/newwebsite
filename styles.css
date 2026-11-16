@@ -488,3 +488,33 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .contact-channel + .contact-channel { margin-top: 42px; }
   .berlin-local { font-size: 18px; }
 }
+
+/* Footer final refinements: bullet list and compact biography without a heading. */
+.contact-client-list {
+  list-style: disc outside;
+  padding-left: 1.1em;
+}
+.contact-client-list li {
+  padding-left: .05em;
+}
+.contact-client-list li::marker { font-size: .7em; }
+.contact-story {
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: clamp(45px, 6vw, 100px);
+  padding-top: clamp(22px, 3vw, 38px);
+  row-gap: clamp(20px, 2vw, 35px);
+}
+.contact-story p {
+  grid-column: 1;
+  justify-self: end;
+  width: min(100%, 880px);
+}
+@media (max-width: 650px) {
+  .contact-client-list { padding-left: 1.12em; }
+  .contact-story {
+    margin-top: 48px;
+    padding-top: 22px;
+    row-gap: 28px;
+  }
+  .contact-story p { justify-self: stretch; width: 100%; }
+}
