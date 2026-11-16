@@ -8,9 +8,9 @@ const PROJECTS = [
     id:'01',
     title:'PDF Magazine',
     category:'EDITORIAL / PUBLISHING',
-    role:'—',
-    year:'—',
-    description:'Selected images from the PDF Magazine project.',
+    role:'Art Direction / Editorial Design',
+    year:'2025–2026',
+    description:'PDF is a magazine about music and art. Inspired by the visual language of early issues of The Face, I developed the complete editorial design for Issues 01 and 02 (2025–2026).',
     cover:'project pdf 1.2.jpg',
     media:['project pdf 1.jpg','project pdf 1.1.jpg','project pdf 1.2.jpg','project pdf 1.3.jpg']
   },
@@ -83,7 +83,7 @@ function gallery(p) {
     } else {
       media = '<img src="'+mediaFile(file)+'" alt="'+e(p.title)+', archive image '+number+'" loading="'+(i===0?'eager':'lazy')+'" decoding="async">';
     }
-    return '<figure class="gallery-item '+shape+'">'+media+'<figcaption class="image-caption"><span>'+e(p.title.toUpperCase())+' / '+number+'</span><span>'+String(p.media.length).padStart(2,'0')+' IMAGES / FILMS</span></figcaption></figure>';
+    return '<figure class="gallery-item '+shape+'">'+media+'</figure>';
   }).join('');
 }
 function project(p) {
@@ -91,7 +91,7 @@ function project(p) {
   document.title = p.title + ' — Stanislav';
   root.innerHTML = [
     '<article class="case">',
-      '<div class="case-topline"><a class="back-button" href="#/"><span class="arrow">←</span> BACK TO INDEX</a><span class="micro">PROJECT ',p.id,' / '+String(PROJECTS.length).padStart(2,'0')+'</span></div>',
+      '<div class="case-topline"><a class="back-button" href="#/"><span class="arrow">←</span> BACK TO INDEX</a></div>',
       '<header class="case-head"><h1 class="case-title">',e(p.title),'</h1><div class="case-deck">',e(p.description),'</div></header>',
       '<div class="case-meta project-meta">',
         '<div><span class="meta-key">PROJECT</span><span class="meta-value">',e(p.title),'</span></div>',
@@ -100,7 +100,7 @@ function project(p) {
         '<div><span class="meta-key">YEAR</span><span class="meta-value">',e(p.year),'</span></div>',
       '</div><div class="case-gallery">',gallery(p),'</div>',
       '<a href="',route(next.id),'" class="next-project" aria-label="Next project: ',e(next.title),'">',
-        '<span class="next-label micro"><span>NEXT PROJECT</span><span>',next.id,' / '+String(PROJECTS.length).padStart(2,'0')+' ↗</span></span>',
+        '<span class="next-label micro"><span>NEXT PROJECT</span></span>',
         '<h2><span>',e(next.title),' ↗</span></h2>',
       '</a>',
     '</article>'
