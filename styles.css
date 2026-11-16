@@ -261,3 +261,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 @media (max-width:620px) {
   .brand { font-size:clamp(11px,3.2vw,14px); }
 }
+
+/* Homepage role label sits directly above the introduction instead of at the top. */
+.hero-intro .hero-role {
+  display:block;
+  color:var(--ink);
+  text-align:left;
+  margin:0 0 clamp(16px,2vw,30px);
+  font-size:11px;
+  line-height:1.35;
+  letter-spacing:.06em;
+}
+.hero-intro p { margin:0; }
+.hero-intro p + p { margin-top:.62em; }
+@media (max-width:620px) {
+  .hero-intro .hero-role { margin-bottom:20px; font-size:10px; }
+}
