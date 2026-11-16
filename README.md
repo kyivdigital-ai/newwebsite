@@ -39,3 +39,11 @@ Navigation now includes **ARCHIVE** (`#/archive`): an irregular, responsive gall
 - Duplicate video uploads were deduplicated by Git SHA, and 2-byte broken video placeholders excluded.
 
 Project galleries also include newly uploaded PDF Magazine images/video, the renamed Hatice video, and the Ukraine Design Week video.
+
+## Berlin time and weather
+
+The homepage contact section shows the current Berlin local time (CET/CEST automatically, using browser `Intl.DateTimeFormat`) and a weather summary when available.
+
+The weather comes from `api/berlin-weather.mjs`, a Vercel Node Function that proxies the MET Norway Locationforecast API. It identifies the project with a contact email and returns a 3-hour CDN-cached result to avoid excessive upstream requests. MET Norway data may be used commercially with attribution; the page links to the source when it shows a forecast.
+
+On a host without Vercel Functions, or if the upstream service fails, the clock still works but the weather is hidden instead of showing made-up conditions.
