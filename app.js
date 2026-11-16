@@ -91,6 +91,26 @@ function navigation(active) {
     else link.removeAttribute('aria-current');
   });
 }
+let berlinClockInterval = null;
+function initBerlinClock() {
+  const display = root.querySelector('#berlin-clock');
+  if (!display) return;
+  const formatTime = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit', hour12: false
+  });
+  const formatZone = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Berlin', timeZoneName: 'short'
+  });
+  const update = () => {
+    const now = new Date();
+    const zone = formatZone.formatToParts(now).find(part => part.type === 'timeZoneName');
+    display.textContent = formatTime.format(now) + ' (' + (zone ? zone.value : 'Berlin') + ')';
+    display.dateTime = now.toISOString();
+  };
+  update();
+  berlinClockInterval = window.setInterval(update, 30000);
+}
+
 function home() {
   document.title = 'Stanislav — Selected Work';
   root.innerHTML = [
@@ -115,20 +135,34 @@ function home() {
         '<a class="contact-poster" href="mailto:hi.stanislavryabchik@gmail.com" aria-label="Email Stanislav about a project or collaboration">',
           '<span class="contact-poster-text">Got an idea?<br>Let’s make something happen.</span>',
           '<span class="contact-poster-mark" aria-hidden="true">SR<span class="contact-poster-asterisk">✳</span></span>',
-          '<span class="contact-poster-link">PROJECTS & COLLABORATIONS ↗</span>',
         '</a>',
         '<div class="contact-column">',
           '<h2 class="contact-pill">Selected clients</h2>',
-          '<p>Broen Studio · Future Systems Production · Gucci · Hatice Schmidt · PDF Magazine · Rombaut · Sad Gay · Ukrainian Design Week</p>',
+          '<ul class="contact-client-list">',
+            '<li>Broen Studio</li>',
+            '<li>Future Systems Production</li>',
+            '<li>Gucci</li>',
+            '<li>Hatice Schmidt</li>',
+            '<li>PDF Magazine</li>',
+            '<li>Rombaut</li>',
+            '<li>Sad Gay</li>',
+            '<li>Ukrainian Design Week</li>',
+          '</ul>',
         '</div>',
         '<div class="contact-column contact-column-email">',
-          '<h2 class="contact-pill">Say hi!</h2>',
-          '<a class="contact-email" href="mailto:hi.stanislavryabchik@gmail.com">hi.stanislavryabchik@gmail.com</a>',
-          '<a class="contact-social" href="https://www.instagram.com/stanislavryabchik/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>',
+          '<div class="contact-channel">',
+            '<h2 class="contact-pill">Email</h2>',
+            '<a class="contact-email" href="mailto:hi.stanislavryabchik@gmail.com">hi.stanislavryabchik@gmail.com</a>',
+          '</div>',
+          '<div class="contact-channel">',
+            '<h2 class="contact-pill">Instagram</h2>',
+            '<a class="contact-social" href="https://www.instagram.com/stanislavryabchik/" target="_blank" rel="noopener noreferrer">@stanislavryabchik ↗</a>',
+          '</div>',
         '</div>',
-        '<div class="contact-column">',
+        '<div class="contact-column contact-location">',
           '<h2 class="contact-pill">Location</h2>',
-          '<p>Based in Berlin.<br>Working everywhere.</p>',
+          '<p>Based in Berlin.</p>',
+          '<time class="berlin-clock" id="berlin-clock" aria-label="Current local time in Berlin">--:-- (CET)</time>',
         '</div>',
       '</div>',
       '<div class="contact-story">',
@@ -139,6 +173,7 @@ function home() {
     '</section>'
   ].join('');
   navigation('index');
+  initBerlinClock();
 }
 function gallery(p) {
   return p.media.map((file,i) => {
@@ -270,6 +305,7 @@ function initArchiveVideos() {
 }
 
 function render() {
+  if (berlinClockInterval) { clearInterval(berlinClockInterval); berlinClockInterval = null; }
   if (archiveObserver) { archiveObserver.disconnect(); archiveObserver = null; }
   root.querySelectorAll('.archive-video').forEach(video => video.pause());
   const path = decodeURIComponent(location.hash.replace(/^#\/?/, '')).replace(/\/+$/, '');
