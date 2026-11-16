@@ -1,28 +1,30 @@
-# Stanislav — Minimal Editorial Portfolio
+# Stanislav — Selected Work
 
-A responsive, image-led portfolio with **five selected projects** and separate detailed pages.
+Responsive editorial portfolio with three confirmed projects and a separate detail/gallery page for each.
 
-## Setup
+## Current project structure
 
-The repository originally contained 52 numbered image/video files but no project metadata or code.
+1. **PDF Magazine** — four images named `project pdf...`
+2. **Hatice Schmidt** — two images and one video named `project hatice...`
+3. **Ukraine Design Week** — one image named `project ukraine design 3.2.jpg`
 
-1. Edit the five entries in the `PROJECTS` array at the top of `app.js`.
-2. Replace the provisional titles (`Archive I` through `Archive V`), descriptions, years and credits with real project information.
-3. Assign each project's `media` list and `cover` to the correct existing images/videos. The provisional grouping is based on filenames, **not confirmed project associations**.
-4. Edit the About copy and Instagram link as needed.
+All other media labelled `another project` are deliberately not shown until the projects they belong to have been identified. None are deleted.
 
-## Routes
+### Media needing attention
 
-- Homepage: `#/`
-- Projects: `#/project/01` through `#/project/05`
-- About: `#/about`
+The following videos are only 2 bytes and **cannot play**:
+- `project ukraine design week 3.1.mp4`
+- `another project 26.mp4`
+- `another project35.mp4`
 
-Routes work as direct links and with browser back/forward.
+Replace them with real MP4 files, then add their names to the appropriate `media` array in `app.js`.
+
+## Edit projects
+
+The `PROJECTS` array in `app.js` contains the displayed project names, cover photos, gallery media, descriptions and temporary role/year fields. The displayed titles follow the filenames. Roles, dates and descriptions should be reviewed before publication.
 
 ## Hosting
 
-This site has no dependencies or build step. Enable GitHub Pages under **Settings → Pages → Deploy from a branch → main / root** once the pull request is merged, or use any static site host.
+No dependencies or build step. The static site works when served from the repository root, for example with GitHub Pages. URLs use hash routing (`#/project/01` etc.) so they can be shared without server-side routing.
 
-## Design
-
-Minimal editorial typography, off-white background, photographic previews on hover, mobile adaptation, image gallery and video playback. Lazy-loading, keyboard-accessible links and reduced-motion support are included.
+The project is in branch `portfolio-editorial-v1`; merge PR #1 into main only after reviewing content.
