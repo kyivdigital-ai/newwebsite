@@ -157,7 +157,7 @@ function home() {
             ARCHIVE_MEDIA.slice(0,14).map((file,i) => {
               const src = mediaFile(file);
               const label = 'Open archive item ' + (i+1);
-              if (/\\.mp4$/i.test(file)) return '<a class="archive-reel-item" href="#/archive" aria-label="'+label+'"><video class="archive-index-video" src="'+src+'" autoplay muted loop playsinline preload="none" aria-hidden="true"></video></a>';
+              if (/\.mp4$/i.test(file)) return '<a class="archive-reel-item" href="#/archive" aria-label="'+label+'"><video class="archive-index-video" src="'+src+'" autoplay muted loop playsinline preload="none" aria-hidden="true"></video></a>';
               return '<a class="archive-reel-item" href="#/archive" aria-label="'+label+'"><img src="'+src+'" loading="lazy" decoding="async" alt=""></a>';
             }).join(''),
           '</div>',
