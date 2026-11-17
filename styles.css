@@ -639,3 +639,41 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .work-title-long { font-size: clamp(32px, 8.5vw, 52px); }
   .case-title-long { font-size: clamp(46px, 12vw, 79px); line-height: .95; }
 }
+
+/* Curated case-study media: keep original content fully visible. */
+/* PDF videos are quieter and visually centered among the full-width layouts. */
+.case--01 .gallery-item--video {
+  width: min(78%, 1060px);
+  align-self: center;
+  margin-inline: auto;
+}
+.case--01 .gallery-item--video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+/* Future Systems: every photograph and film uses one consistent canvas size.
+   The content is contained, never stretched or cropped. */
+.case--04 .gallery-item {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #e9e9e4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.case--04 .gallery-item img,
+.case--04 .gallery-item video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+@media (max-width: 620px) {
+  .case--01 .gallery-item--video { width: 100%; }
+  .case--04 .gallery-item { aspect-ratio: 4 / 3; }
+}

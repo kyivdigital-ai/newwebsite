@@ -17,10 +17,10 @@ const PROJECTS = [
   {
     id:'02',
     title:'Hatice Schmidt',
-    category:'VISUAL PROJECT',
-    role:'—',
-    year:'—',
-    description:'Selected visual work for Hatice Schmidt.',
+    category:'BEAUTY / DESIGN',
+    role:'Design / Studio Collaboration',
+    year:'2025',
+    description:'Selected creative work for HATICE SCHMIDT, completed in collaboration with a studio in 2025. Originally founded as Hatice Schmidt LaBS in 2020 and relaunched in 2024, the beauty brand takes a no-compromise approach to innovative, high-performance makeup and distinctive packaging.',
     cover:'project hatice schmidt 2.3.jpg',
     media:['project hatice.mp4','project hatice 2.2.jpg','project hatice schmidt 2.3.jpg']
   },
@@ -32,14 +32,14 @@ const PROJECTS = [
     year:'—',
     description:'Selected visual work for Ukraine Design Week.',
     cover:'project ukraine design 3.2.jpg',
-    media:['project ukraine design 3.2.jpg','project ukraine design 3.3.mp4']
+    media:['project ukraine design 3.2.jpg','project ukraine design week 3.4.jpg','project ukraine design 3.3.mp4']
   },
   {
     id:'04',
     title:'Future Systems Productions',
     category:'CREATIVE / PRODUCTION',
-    role:'—',
-    year:'—',
+    role:'Web Design',
+    year:'2025–2026',
     description:'Selected visual work for Future Systems Productions, a creative agency offering end-to-end consultancy and production. Its approach champions underrepresented voices, particularly across LGBTQIA+ and BIPOC communities, in front of and behind the camera, with sustainability in mind.',
     cover:'future system 1.jpg',
     media:['future system 1.jpg','future system 2.jpg','future system 3.jpg','future system 5.mp4','future system 6.mp4']
@@ -283,14 +283,14 @@ function gallery(p) {
     } else {
       media = '<img src="'+mediaFile(file)+'" alt="'+e(p.title)+', archive image '+number+'" loading="'+(i===0?'eager':'lazy')+'" decoding="async">';
     }
-    return '<figure class="gallery-item">'+media+'</figure>';
+    return '<figure class="gallery-item'+(/\.mp4$/i.test(file) ? ' gallery-item--video' : '')+'">'+media+'</figure>';
   }).join('');
 }
 function project(p) {
   const next = PROJECTS[(PROJECTS.indexOf(p)+1)%PROJECTS.length];
   document.title = p.title + ' — Stanislav';
   root.innerHTML = [
-    '<article class="case">',
+    '<article class="case case--',p.id,'">',
       '<div class="case-topline"><a class="back-button" href="#/"><span class="arrow">←</span> BACK TO INDEX</a></div>',
       '<header class="case-head"><h1 class="case-title',p.title.length > 21 ? ' case-title-long' : '','">',e(p.title),'</h1><div class="case-deck">',e(p.description),'</div></header>',
       '<div class="case-meta project-meta">',
