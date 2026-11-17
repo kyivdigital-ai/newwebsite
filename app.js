@@ -201,9 +201,6 @@ function home() {
           '<a class="berlin-weather-credit" id="berlin-weather-credit" href="https://www.met.no/en" target="_blank" rel="noopener noreferrer" hidden>Weather: MET Norway ↗</a>',
         '</div>',
       '</div>',
-      '<div class="contact-story">',
-        '<p>My most personal and inspiring project right now is my book, The Little Book That Will Never See the World. I spent three years writing it and built the whole project from scratch — from the editorial design and visual identity to the website and production.</p>',
-      '</div>',
     '</section>'
   ].join('');
   navigation('index');
