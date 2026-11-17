@@ -631,22 +631,39 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 .archive-reel-controls button {
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  color: var(--ink);
-  background: transparent;
-  font-family: var(--sans);
-  font-size: 20px;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid #171715;
+  border-radius: 3px;
+  color: #fff;
+  background: #171715;
+  line-height: 0;
   cursor: pointer;
+  transition: background .18s ease, color .18s ease, opacity .18s ease;
+}
+.archive-reel-controls button svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .archive-reel-controls button:hover:not(:disabled) {
-  background: var(--ink);
-  color: var(--paper);
+  background: #383835;
+  border-color: #383835;
+  color: #fff;
+}
+.archive-reel-controls button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
 }
 .archive-reel-controls button:disabled {
-  opacity: .22;
+  opacity: .32;
   cursor: default;
 }
 @media (max-width: 620px) {
@@ -654,7 +671,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .archive-index-row .archive-index-link .work-label { display: none; }
   .archive-reel-item { height: 175px; }
   .archive-reel-wrap { padding-bottom: 21px; }
-  .archive-reel-controls button { width: 34px; height: 34px; }
+  .archive-reel-controls button { flex-basis: 38px; width: 38px; height: 38px; }
+  .archive-reel-controls button svg { width: 21px; height: 21px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .archive-index-row .archive-index-title { transition: none; }
