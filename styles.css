@@ -628,3 +628,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 @media (prefers-reduced-motion: reduce) {
   .archive-index-row .archive-index-title { transition: none; }
 }
+
+/* Fit longer editorial case names without squeezing or cropping project media. */
+.work-title-long { font-size: clamp(37px, 4.7vw, 91px); line-height: .92; }
+.case-title-long { font-size: clamp(55px, 7.8vw, 145px); line-height: .92; overflow-wrap: normal; word-break: normal; }
+@media (max-width: 900px) {
+  .work-title-long { font-size: clamp(36px, 6.5vw, 72px); }
+}
+@media (max-width: 620px) {
+  .work-title-long { font-size: clamp(32px, 8.5vw, 52px); }
+  .case-title-long { font-size: clamp(46px, 12vw, 79px); line-height: .95; }
+}

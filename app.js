@@ -33,6 +33,16 @@ const PROJECTS = [
     description:'Selected visual work for Ukraine Design Week.',
     cover:'project ukraine design 3.2.jpg',
     media:['project ukraine design 3.2.jpg','project ukraine design 3.3.mp4']
+  },
+  {
+    id:'04',
+    title:'Future Systems Productions',
+    category:'CREATIVE / PRODUCTION',
+    role:'—',
+    year:'—',
+    description:'Selected visual work for Future Systems Productions, a creative agency offering end-to-end consultancy and production. Its approach champions underrepresented voices, particularly across LGBTQIA+ and BIPOC communities, in front of and behind the camera, with sustainability in mind.',
+    cover:'future system 1.jpg',
+    media:['future system 1.jpg','future system 2.jpg','future system 3.jpg','future system 5.mp4','future system 6.mp4']
   }
 ];
 
@@ -134,7 +144,7 @@ function home() {
       PROJECTS.map((p,i) => [
         '<article class="work-row"><a class="work-link" href="', route(p.id), '" aria-label="Open ', e(p.title), '">',
         '<span class="work-index micro">',p.id,'</span>',
-        '<span class="work-title">',e(p.title),'</span>',
+        '<span class="work-title',p.title.length > 21 ? ' work-title-long' : '','">',e(p.title),'</span>',
         '<span class="work-label micro">',e(p.category),'</span>',
         '<span class="work-arrow" aria-hidden="true">↗</span>',
         '<img class="hover-preview" src="',mediaFile(p.cover),'" alt="" loading="',i<2?'eager':'lazy','">',
@@ -142,7 +152,7 @@ function home() {
       ].join('')).join(''),
       '<article class="work-row archive-index-row">',
         '<a class="work-link archive-index-link" href="#/archive" aria-label="Open visual archive">',
-          '<span class="work-index micro">04</span>',
+          '<span class="work-index micro">05</span>',
           '<span class="work-title archive-index-title">Archive</span>',
           '<span class="work-label micro" aria-hidden="true"></span>',
           '<span class="work-arrow" aria-hidden="true">↗</span>',
@@ -173,7 +183,7 @@ function home() {
           '<h2 class="contact-pill">Selected clients</h2>',
           '<ul class="contact-client-list">',
             '<li>Broen Studio</li>',
-            '<li>Future Systems Production</li>',
+            '<li>Future Systems Productions</li>',
             '<li>Gucci</li>',
             '<li>Hatice Schmidt</li>',
             '<li>PDF Magazine</li>',
@@ -282,7 +292,7 @@ function project(p) {
   root.innerHTML = [
     '<article class="case">',
       '<div class="case-topline"><a class="back-button" href="#/"><span class="arrow">←</span> BACK TO INDEX</a></div>',
-      '<header class="case-head"><h1 class="case-title">',e(p.title),'</h1><div class="case-deck">',e(p.description),'</div></header>',
+      '<header class="case-head"><h1 class="case-title',p.title.length > 21 ? ' case-title-long' : '','">',e(p.title),'</h1><div class="case-deck">',e(p.description),'</div></header>',
       '<div class="case-meta project-meta">',
         '<div><span class="meta-key">PROJECT</span><span class="meta-value">',e(p.title),'</span></div>',
         '<div><span class="meta-key">DISCIPLINE</span><span class="meta-value">',e(p.category),'</span></div>',
