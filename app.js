@@ -43,6 +43,16 @@ const PROJECTS = [
     description:'Selected visual work for Future Systems, a creative agency offering end-to-end consultancy and production. Its approach champions underrepresented voices, particularly across LGBTQIA+ and BIPOC communities, in front of and behind the camera, with sustainability in mind.',
     cover:'future system 1.jpg',
     media:['future system 1.jpg','future system 2.jpg','future system 3.jpg','future system 5.mp4','future system 6.mp4']
+  },
+  {
+    id:'05',
+    title:'Upcoming Urban',
+    category:'BRANDING / WEB DESIGN',
+    role:'Branding / Web Design',
+    year:'2027',
+    description:'Project in progress. Branding and web design for Urban, 2027.',
+    cover:'urban1.jpg',
+    media:['urban1.jpg','urban 2.jpg','urban3.jpg','urban 4.jpg','urban 5.jpg','urban4.jpg']
   }
 ];
 
@@ -101,6 +111,69 @@ function navigation(active) {
     else link.removeAttribute('aria-current');
   });
 }
+
+function initSiteTools() {
+  const clock = document.getElementById('header-clock');
+  if (clock) {
+    const fmt = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/Berlin', hour:'2-digit', minute:'2-digit', hour12:false
+    });
+    const paint = () => { clock.textContent = fmt.format(new Date()); };
+    paint();
+    window.setInterval(paint, 30000);
+  }
+  const button = document.getElementById('theme-toggle');
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  let stored = 'light';
+  try { stored = localStorage.getItem('stanislav-theme') === 'dark' ? 'dark' : 'light'; } catch (_) {}
+  const apply = theme => {
+    const dark = theme === 'dark';
+    document.documentElement.setAttribute('data-theme',theme);
+    if (button) {
+      button.setAttribute('aria-pressed',String(dark));
+      button.setAttribute('aria-label',dark ? 'Switch to light mode' : 'Switch to dark mode');
+      button.setAttribute('title',dark ? 'Light mode' : 'Dark mode');
+      const glyph = button.querySelector('span');
+      if (glyph) glyph.textContent = dark ? '☀' : '◐';
+    }
+    if (themeMeta) themeMeta.setAttribute('content',dark ? '#171717' : '#f5f5f1');
+  };
+  apply(stored);
+  if (button) button.addEventListener('click',() => {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    apply(theme);
+    try { localStorage.setItem('stanislav-theme',theme); } catch (_) {}
+  });
+  // Use a custom editorial pointer on desktop only. Native cursor stays on touch
+  // devices and for users who prefer reduced motion.
+  const fine = window.matchMedia && window.matchMedia('(pointer: fine) and (hover: hover) and (prefers-reduced-motion: no-preference)').matches;
+  if (!fine) return;
+  const cursor = document.createElement('div');
+  cursor.className = 'editorial-cursor';
+  cursor.setAttribute('aria-hidden','true');
+  cursor.innerHTML = '<span class="editorial-cursor-label"></span>';
+  document.body.appendChild(cursor);
+  document.documentElement.classList.add('has-editorial-cursor');
+  const label = cursor.querySelector('.editorial-cursor-label');
+  document.addEventListener('pointermove',event => {
+    if (event.pointerType !== 'mouse' && event.pointerType !== 'pen') return;
+    cursor.style.transform = 'translate3d('+event.clientX+'px,'+event.clientY+'px,0) translate(-50%,-50%)';
+    cursor.classList.add('is-visible');
+    const interactive = event.target.closest('a,button,video');
+    if (interactive) {
+      label.textContent = interactive.matches('video') ? 'PLAY' :
+        interactive.classList.contains('theme-toggle') ? 'SWITCH' :
+        interactive.classList.contains('work-link') || interactive.classList.contains('archive-reel-item') ? 'VIEW' : 'OPEN';
+      cursor.classList.add('is-active');
+    } else {
+      cursor.classList.remove('is-active');
+      label.textContent = '';
+    }
+  },{passive:true});
+  document.addEventListener('pointerleave',() => cursor.classList.remove('is-visible'));
+  window.addEventListener('blur',() => cursor.classList.remove('is-visible'));
+}
+
 let berlinClockInterval = null;
 function initBerlinClock() {
   const display = root.querySelector('#berlin-clock');
@@ -152,7 +225,7 @@ function home() {
       ].join('')).join(''),
       '<article class="work-row archive-index-row">',
         '<a class="work-link archive-index-link" href="#/archive" aria-label="Open visual archive">',
-          '<span class="work-index micro">05</span>',
+          '<span class="work-index micro">06</span>',
           '<span class="work-title archive-index-title">Archive</span>',
           '<span class="work-label micro" aria-hidden="true"></span>',
           '<span class="work-arrow" aria-hidden="true">↗</span>',
@@ -298,7 +371,21 @@ function project(p) {
         '<div><span class="meta-key">DISCIPLINE</span><span class="meta-value">',e(p.category),'</span></div>',
         '<div><span class="meta-key">ROLE / CREDITS</span><span class="meta-value">',e(p.role),'</span></div>',
         '<div><span class="meta-key">YEAR</span><span class="meta-value">',e(p.year),'</span></div>',
-      '</div><div class="case-gallery">',gallery(p),'</div>',
+      '</div>',
+      p.id === '05' ? [
+        '<section class="project-process" aria-label="Upcoming Urban project status">',
+          '<div class="project-process-head">',
+            '<span class="micro">STATUS / 2027</span>',
+            '<span class="project-process-live"><span class="project-process-dot" aria-hidden="true"></span>IN DEVELOPMENT</span>',
+          '</div>',
+          '<div class="project-process-main">',
+            '<span class="project-process-title">Still making<br>things.</span>',
+            '<div class="project-process-track" aria-hidden="true"><span class="project-process-runner"></span></div>',
+          '</div>',
+          '<div class="project-process-foot micro">BRANDING / WEB DESIGN — WORK IN PROGRESS</div>',
+        '</section>'
+      ].join('') : '',
+      '<div class="case-gallery">',gallery(p),'</div>',
       '<a href="',route(next.id),'" class="next-project" aria-label="Next project: ',e(next.title),'">',
         '<span class="next-label micro"><span>NEXT PROJECT</span></span>',
         '<h2 class="next-project-title',next.title.length > 16 ? ' next-project-title-long' : '','"><span class="next-project-name">',e(next.title),'</span><span class="next-project-arrow" aria-hidden="true">↗</span></h2>',
@@ -314,9 +401,7 @@ function archive() {
   root.innerHTML = [
     '<section class="archive-page" aria-label="Visual archive">',
       '<div class="archive-mast">',
-        '<div class="archive-topline micro"><span>PHOTOGRAPHY / MOVING IMAGE</span><a href="#/">BACK TO INDEX ↗</a></div>',
         '<h1 class="archive-heading">Archive<span>.</span></h1>',
-        '<p class="archive-intro">An ongoing collection of images, fragments and moving pictures.</p>',
       '</div>',
       '<div class="archive-grid">',
       ARCHIVE_MEDIA.map((file,i) => {
@@ -336,7 +421,6 @@ function archive() {
         return '<figure class="archive-item"><img src="'+source+'" alt="Archive photograph '+n+'" loading="lazy" decoding="async"></figure>';
       }).join(''),
       '</div>',
-      '<a class="archive-return micro" href="#/">← SELECTED WORK</a>',
     '</section>'
   ].join('');
   navigation('archive');
@@ -419,4 +503,5 @@ function render() {
   window.scrollTo({top:0,behavior:'instant'});
 }
 window.addEventListener('hashchange',render);
+initSiteTools();
 render();

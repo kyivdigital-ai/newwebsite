@@ -677,3 +677,177 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .case--01 .gallery-item--video { width: 100%; }
   .case--04 .gallery-item { aspect-ratio: 4 / 3; }
 }
+
+/* 2027 / Upcoming Urban: a process state, not a fictional completion percentage. */
+.project-process {
+  margin: 0 0 clamp(30px, 5vw, 75px);
+  padding: clamp(23px, 3vw, 48px);
+  background: var(--surface, #e9e9e4);
+  color: var(--ink);
+  overflow: hidden;
+  isolation: isolate;
+}
+.project-process-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  color:var(--soft);
+}
+.project-process-live {
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  font-size:11px;
+  letter-spacing:.055em;
+  font-weight:600;
+  white-space:nowrap;
+}
+.project-process-dot {
+  display:inline-block;
+  width:7px;
+  height:7px;
+  background:#ff7446;
+  border-radius:50%;
+  animation: statusBreathe 2.2s ease-in-out infinite;
+}
+.project-process-main {
+  margin:clamp(55px, 9vw, 145px) 0 clamp(42px, 6vw, 95px);
+}
+.project-process-title {
+  display:block;
+  font-size:clamp(59px, 10.8vw, 165px);
+  letter-spacing:-.085em;
+  line-height:.85;
+  font-weight:400;
+}
+.project-process-track {
+  position:relative;
+  height:2px;
+  background:var(--line);
+  overflow:hidden;
+  margin-top:clamp(35px,5vw,77px);
+}
+.project-process-runner {
+  position:absolute;
+  left:0;
+  top:0;
+  width:24%;
+  height:100%;
+  background:var(--ink);
+  animation: processScan 3.4s cubic-bezier(.32,.1,.7,1) infinite alternate;
+}
+.project-process-foot { color:var(--soft); }
+@keyframes processScan {
+  from {transform:translateX(-100%);}
+  to {transform:translateX(440%);}
+}
+@keyframes statusBreathe {
+  0%,100% {opacity:.45;transform:scale(.8);}
+  50% {opacity:1;transform:scale(1.25);}
+}
+/* Remove archive explanatory UI and bring imagery close to the title. */
+.archive-mast { padding: clamp(30px, 4vw, 62px) 0 clamp(42px, 6vw, 96px); }
+.archive-heading { margin:0; }
+@media(max-width:620px) {
+  .archive-mast { padding:25px 0 40px; }
+  .archive-heading { margin:20px 0 0; }
+  .project-process-head { align-items:flex-start; }
+  .project-process-live { font-size:9px; }
+  .project-process-title { font-size:clamp(54px,14vw,90px); }
+  .project-process-main { margin:75px 0 55px; }
+}
+/* Top-right utilities: live Berlin clock and a single theme control. */
+.header-time {
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.04em;
+  color:var(--soft);
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+  border-left:1px solid var(--line);
+  padding-left:clamp(10px,1.3vw,21px);
+}
+.theme-toggle {
+  display:grid;
+  place-items:center;
+  width:32px;
+  height:32px;
+  flex:none;
+  padding:0;
+  border:1px solid var(--line);
+  border-radius:50%;
+  color:var(--ink);
+  background:transparent;
+  font-size:18px;
+  font-weight:400;
+  line-height:1;
+  cursor:pointer;
+  transition:background .25s ease, color .25s ease, transform .25s ease;
+}
+.theme-toggle:hover {background:var(--ink);color:var(--paper);transform:rotate(25deg);}
+@media(max-width:900px) {
+  .header-time {display:none;}
+}
+@media(max-width:620px) {
+  .top-nav > a[href*="instagram.com"] {display:none;}
+  .top-nav {gap:10px;}
+  .theme-toggle {width:29px;height:29px;font-size:17px;}
+}
+/* Light/dark treatment uses variables so the photographic design stays consistent. */
+:root { --surface:#e9e9e4; }
+html[data-theme="dark"] {
+  --paper:#171717;
+  --ink:#efefeb;
+  --soft:#a8a8a2;
+  --line:#454540;
+  --surface:#272725;
+  color-scheme:dark;
+}
+html[data-theme="dark"] .contact-pill {background:#343431;color:var(--ink);}
+html[data-theme="dark"] .contact-poster {color:#fffaf2;}
+html[data-theme="dark"] .contact-poster-mark {-webkit-text-stroke:1.5px #171715;}
+html[data-theme="dark"] .contact-poster-asterisk {-webkit-text-stroke:1px #171715;}
+html[data-theme="dark"] .archive-item img,
+html[data-theme="dark"] .archive-reel-item img,
+html[data-theme="dark"] .archive-reel-item video,
+html[data-theme="dark"] .case--04 .gallery-item {background:#272725;}
+html[data-theme="dark"] .gallery-item video {background:#050505;}
+html[data-theme="dark"] .skip-link {background:#e9e9e4;color:#171715;}
+/* Editorial cursor: replaces the pointer only for desktop fine-pointer devices. */
+.editorial-cursor {display:none;}
+@media (pointer:fine) and (hover:hover) and (prefers-reduced-motion:no-preference) {
+  html.has-editorial-cursor,
+  html.has-editorial-cursor a,
+  html.has-editorial-cursor button {cursor:none;}
+  .editorial-cursor {
+    position:fixed;
+    left:0;top:0;
+    z-index:1000;
+    display:grid;
+    place-items:center;
+    width:14px;height:14px;
+    border-radius:50%;
+    background:var(--ink);
+    color:var(--paper);
+    pointer-events:none;
+    opacity:0;
+    transition:width .16s ease,height .16s ease,opacity .13s ease,background .13s ease;
+    will-change:transform;
+  }
+  .editorial-cursor.is-visible {opacity:1;}
+  .editorial-cursor.is-active {width:58px;height:58px;}
+  .editorial-cursor-label {
+    display:none;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.05em;
+    line-height:1;
+  }
+  .editorial-cursor.is-active .editorial-cursor-label {display:block;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .project-process-dot,.project-process-runner {animation:none!important;}
+  .project-process-runner {transform:translateX(170%);}
+  .theme-toggle {transition:none;}
+}
