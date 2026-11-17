@@ -36,11 +36,11 @@ const PROJECTS = [
   },
   {
     id:'04',
-    title:'Future Systems Productions',
+    title:'Future Systems',
     category:'CREATIVE / PRODUCTION',
     role:'Web Design',
     year:'2025–2026',
-    description:'Selected visual work for Future Systems Productions, a creative agency offering end-to-end consultancy and production. Its approach champions underrepresented voices, particularly across LGBTQIA+ and BIPOC communities, in front of and behind the camera, with sustainability in mind.',
+    description:'Selected visual work for Future Systems, a creative agency offering end-to-end consultancy and production. Its approach champions underrepresented voices, particularly across LGBTQIA+ and BIPOC communities, in front of and behind the camera, with sustainability in mind.',
     cover:'future system 1.jpg',
     media:['future system 1.jpg','future system 2.jpg','future system 3.jpg','future system 5.mp4','future system 6.mp4']
   }
@@ -183,7 +183,7 @@ function home() {
           '<h2 class="contact-pill">Selected clients</h2>',
           '<ul class="contact-client-list">',
             '<li>Broen Studio</li>',
-            '<li>Future Systems Productions</li>',
+            '<li>Future Systems</li>',
             '<li>Gucci</li>',
             '<li>Hatice Schmidt</li>',
             '<li>PDF Magazine</li>',
