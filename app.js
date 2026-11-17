@@ -12,7 +12,7 @@ const PROJECTS = [
     year:'2025–2026',
     description:'PDF is a magazine about music and art. Inspired by the visual language of early issues of The Face, I developed the complete editorial design for Issues 01 and 02 (2025–2026).',
     cover:'project pdf 1.2.jpg',
-    media:['project pdf 1.jpg','project pdf 1.1.jpg','project pdf 1.2.jpg','project pdf 1.3.jpg','project pdf 1.4.jpg','project pdf 1.5.jpg','project pdf 1.6.jpg','project pdf 1.7.jpg','project pdf 1.8.mp4']
+    media:['project pdf 1.jpg','project pdf 1.1.jpg','project pdf 1.2.jpg','project pdf 1.3.jpg','project pdf 1.4.jpg','project pdf 1.5.jpg','project pdf 1.6.jpg','project pdf 1.7.jpg','project pdf 1.8.mp4','pdf mag.mp4']
   },
   {
     id:'02',
