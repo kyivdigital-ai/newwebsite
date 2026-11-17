@@ -271,7 +271,7 @@ function home() {
           '</div>',
           '<div class="contact-channel">',
             '<h2 class="contact-pill">Instagram</h2>',
-            '<a class="contact-social" href="https://www.instagram.com/stanislavryabchik/" target="_blank" rel="noopener noreferrer">@stanislavryabchik ↗</a>',
+            '<a class="contact-social" href="https://www.instagram.com/stanislav.ryabchik/" target="_blank" rel="noopener noreferrer">@stanislav.ryabchik ↗</a>',
           '</div>',
         '</div>',
         '<div class="contact-column contact-location">',
