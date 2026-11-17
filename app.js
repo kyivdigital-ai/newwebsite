@@ -267,7 +267,7 @@ function home() {
         '<div class="contact-column contact-column-email">',
           '<div class="contact-channel">',
             '<h2 class="contact-pill">Email</h2>',
-            '<a class="contact-email" href="mailto:hi.stanislavryabchik@gmail.com">hi.stanislavryabchik@gmail.com</a>',
+            '<a class="contact-email" href="mailto:hi.stanislavryabchik@gmail.com"><span class="email-local">hi.stanislavryabchik@</span><wbr><span class="email-domain">gmail.com</span></a>',
           '</div>',
           '<div class="contact-channel">',
             '<h2 class="contact-pill">Instagram</h2>',
@@ -285,8 +285,8 @@ function home() {
         '</div>',
       '</div>',
       '<div class="contact-story">',
-        '<p>Hi, I’m Stanislav Ryabchik, a graphic designer and art director living in Berlin. I make identities, publications, websites, digital experiences and things that move.</p>',
-        '<p>My most personal and inspiring project right now is my book, The Little Book That Will Never See the World. I spent three years writing it and built the whole project from scratch — from the editorial design and visual identity to the website and production.</p>',
+        '<p>Hi, I’m Stanislav Ryabchik, a&nbsp;graphic designer and art director living in&nbsp;Berlin. I&nbsp;make identities, publications, websites, digital experiences and things that move.</p>',
+        '<p>My most personal and inspiring project right now is my&nbsp;book, The Little Book That Will Never See the World. I&nbsp;spent three years writing it and built the whole project from scratch — from the editorial design and visual identity to the website and production.</p>',
       '</div>',
     '</section>'
   ].join('');

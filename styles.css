@@ -900,3 +900,68 @@ html[data-theme="dark"] .skip-link {background:#e9e9e4;color:#171715;}
   .project-process-runner {transform:translateX(170%);}
   .theme-toggle {transition:none;}
 }
+
+/* Readability pass for phone-sized screens and narrower Readymag embeds.
+   Keep punctuation and complete words together; avoid isolated short words. */
+.contact-email {
+  display: block;
+  min-width: 0;
+  font-size: clamp(15px, 1.25vw, 23px);
+  line-height: 1.35;
+  letter-spacing: -.035em;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: pretty;
+}
+.contact-email .email-local,
+.contact-email .email-domain {
+  white-space: nowrap;
+}
+.contact-story p,
+.case-deck,
+.contact-column p,
+.contact-client-list li,
+.next-project-name,
+.project-process-title,
+.work-label {
+  text-wrap: pretty;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+@media (max-width: 650px) {
+  .contact-board-grid,
+  .contact-column,
+  .contact-column-email,
+  .contact-channel,
+  .contact-story { min-width: 0; }
+  .contact-story p {
+    font-size: clamp(18px, 5.2vw, 23px);
+    line-height: 1.35;
+    letter-spacing: -.036em;
+  }
+  .contact-column p,
+  .contact-client-list,
+  .contact-column-email .contact-social {
+    font-size: clamp(20px, 5.4vw, 25px);
+    line-height: 1.28;
+  }
+  .contact-email {
+    font-size: clamp(17px, 4.8vw, 22px);
+    line-height: 1.4;
+    letter-spacing: -.035em;
+  }
+  .case-deck {
+    font-size: clamp(16px, 4.5vw, 20px);
+    line-height: 1.4;
+    max-width: 100%;
+  }
+  .case-meta .meta-value {overflow-wrap: normal;word-break:normal;}
+  .contact-story { row-gap: clamp(26px, 7vw, 38px); }
+}
+@media (max-width: 360px) {
+  .contact-email { font-size: 16px; }
+  .contact-story p {font-size:18px;}
+  .work-title-long {font-size:30px;}
+}
