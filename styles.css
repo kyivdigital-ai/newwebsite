@@ -1037,3 +1037,44 @@ html[data-theme="dark"] .skip-link {background:#e9e9e4;color:#171715;}
   .site-header {padding-inline:12px;}
   .top-nav {gap:6px;}
 }
+
+/* Remove surplus top separators on desktop and mobile. */
+.site-header { border-bottom: 0; }
+.work-list > .work-row:first-child { border-top: 0; }
+
+/* SVG arrows avoid iOS rendering the Unicode arrows as colorful emoji. */
+.external-arrow-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: -.12em;
+}
+.work-arrow,
+.next-project-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.work-arrow .external-arrow-icon {width:1em;height:1em;}
+.next-project-arrow .external-arrow-icon {width:1em;height:1em;}
+.header-instagram .instagram-nav-desktop,
+.header-instagram .instagram-nav-mobile,
+.contact-social {align-items:center;gap:.26em;}
+.header-instagram .instagram-nav-desktop,
+.contact-social {display:inline-flex;}
+.header-instagram .external-arrow-icon {width:1.05em;height:1.05em;}
+.contact-social .external-arrow-icon {width:.75em;height:.75em;vertical-align:0;}
+.berlin-weather-credit .external-arrow-icon {width:.85em;height:.85em;}
+@media (max-width:620px) {
+  .header-instagram .instagram-nav-desktop {display:none;}
+  .header-instagram .instagram-nav-mobile {display:inline-flex;align-items:center;gap:3px;}
+  .site-header {border-bottom:0;}
+  .work-list > .work-row:first-child {border-top:0;}
+}
