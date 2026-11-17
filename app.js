@@ -59,6 +59,20 @@ const PROJECTS = [
 // A deliberately mixed photographic / moving-image archive.
 // Edit this list to change the order or include new uploaded files.
 // Duplicated source videos and invalid 2-byte uploads are excluded.
+const ARCHIVE_REEL_MEDIA = [
+  "video1.mp4",
+  "another project21.jpg",
+  "video6.mp4",
+  "video2.mp4",
+  "another project 27.jpg",
+  "video7.mp4",
+  "video8.mp4",
+  "another project11.jpg",
+  "video4.mp4",
+  "video3.mp4",
+  "another project 33.jpg"
+];
+
 const ARCHIVE_MEDIA = [
   'another project21.jpg',
   'another project11.jpg',
@@ -232,7 +246,7 @@ function home() {
         '</a>',
         '<div class="archive-reel-wrap">',
           '<div class="archive-reel" id="archive-reel" role="region" aria-label="Scroll through archive photos and videos" tabindex="0">',
-            ARCHIVE_MEDIA.slice(0,14).map((file,i) => {
+            ARCHIVE_REEL_MEDIA.map((file,i) => {
               const src = mediaFile(file);
               const label = 'Open archive item ' + (i+1);
               if (/\.mp4$/i.test(file)) return '<a class="archive-reel-item" href="#/archive" aria-label="'+label+'"><video class="archive-index-video" src="'+src+'" autoplay muted loop playsinline preload="none" aria-hidden="true"></video></a>';
@@ -271,7 +285,7 @@ function home() {
           '</div>',
           '<div class="contact-channel">',
             '<h2 class="contact-pill">Instagram</h2>',
-            '<a class="contact-social" href="https://www.instagram.com/stanislav.ryabchik/" target="_blank" rel="noopener noreferrer">@stanislav.ryabchik ↗</a>',
+            '<a class="contact-social" href="https://www.instagram.com/stanislav.ryabchik/" target="_blank" rel="noopener noreferrer" aria-label="Open @stanislav.ryabchik on Instagram in a new tab" title="Open Instagram">@stanislav.ryabchik ↗</a>',
           '</div>',
         '</div>',
         '<div class="contact-column contact-location">',
