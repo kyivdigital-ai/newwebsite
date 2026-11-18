@@ -10,7 +10,7 @@ const PROJECTS = [
     category:'EDITORIAL / PUBLISHING',
     role:'Art Direction / Editorial Design',
     year:'2025–2026',
-    description:'PDF is a magazine about music and art. Inspired by the visual language of early issues of The Face, I developed the complete editorial design for Issues 01 and 02 (2025–2026).',
+    description:'I developed the art direction and editorial design for PDF Magazine, a publication about music and art, drawing inspiration from the early issues of The Face.',
     cover:'project pdf 1.2.jpg',
     media:['project pdf 1.jpg','project pdf 1.1.jpg','project pdf 1.2.jpg','project pdf 1.3.jpg','project pdf 1.4.jpg','project pdf 1.5.jpg','project pdf 1.6.jpg','project pdf 1.7.jpg','project pdf 1.8.mp4','pdf mag.mp4']
   },
@@ -20,17 +20,17 @@ const PROJECTS = [
     category:'BEAUTY / DESIGN',
     role:'Design / Studio Collaboration',
     year:'2025',
-    description:'Selected creative work for HATICE SCHMIDT, completed in collaboration with a studio in 2025. Originally founded as Hatice Schmidt LaBS in 2020 and relaunched in 2024, the beauty brand takes a no-compromise approach to innovative, high-performance makeup and distinctive packaging.',
+    description:'I worked on visual design for beauty brand HATICE SCHMIDT in collaboration with a studio in 2025.',
     cover:'project hatice schmidt 2.3.jpg',
     media:['project hatice.mp4','project hatice 2.2.jpg','project hatice schmidt 2.3.jpg']
   },
   {
     id:'03',
     title:'Ukraine Design Week',
-    category:'DESIGN PROJECT',
-    role:'—',
-    year:'—',
-    description:'Selected visual work for Ukraine Design Week.',
+    category:'BRAND IDENTITY / VISUAL COMMUNICATION',
+    role:'Art Direction / Visual Identity',
+    year:'2024–2026',
+    description:'I developed the visual identity and festival communications for Ukraine Design Week across 2024–2026.',
     cover:'project ukraine design 3.2.jpg',
     media:['project ukraine design 3.2.jpg','project ukraine design week 3.4.jpg','project ukraine design 3.3.mp4']
   },
@@ -40,7 +40,7 @@ const PROJECTS = [
     category:'CREATIVE / PRODUCTION',
     role:'Web Design',
     year:'2025–2026',
-    description:'Selected visual work for Future Systems, a creative agency offering end-to-end consultancy and production. Its approach champions underrepresented voices, particularly across LGBTQIA+ and BIPOC communities, in front of and behind the camera, with sustainability in mind.',
+    description:'I designed the website for Future Systems, a creative agency supporting underrepresented LGBTQIA+ and BIPOC voices.',
     cover:'future system 1.jpg',
     media:['future system 1.jpg','future system 2.jpg','future system 3.jpg','future system 5.mp4','future system 6.mp4']
   },
@@ -50,7 +50,7 @@ const PROJECTS = [
     category:'BRANDING / WEB DESIGN',
     role:'Branding / Web Design',
     year:'2027',
-    description:'Project in progress. Branding and web design for Urban, 2027.',
+    description:'I’m developing the branding and website for Urban. A work in progress for 2027.',
     cover:'urban1.jpg',
     media:['urban1.jpg','urban 2.jpg','urban3.jpg','urban 4.jpg','urban 5.jpg','urban4.jpg']
   }
