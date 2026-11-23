@@ -38,9 +38,9 @@ const PROJECTS = [
     id:'04',
     title:'Future Systems',
     category:'CREATIVE / PRODUCTION',
-    role:'Web Design',
+    role:'Web Design / Retouching / Post-Production',
     year:'2025–2026',
-    description:'I designed the website for Future Systems, a creative agency supporting underrepresented LGBTQIA+ and BIPOC voices.',
+    description:'I designed the Future Systems website and worked on photo retouching and post-production for still and moving images.',
     cover:'future system 1.jpg',
     media:['future system 1.jpg','future system 2.jpg','future system 3.jpg','future system 5.mp4','future system 6.mp4']
   },
