@@ -53,6 +53,31 @@ const PROJECTS = [
     description:'I’m developing the branding and website for Urban. A work in progress for 2027.',
     cover:'urban1.jpg',
     media:['urban1.jpg','urban 2.jpg','urban3.jpg','urban 4.jpg','urban 5.jpg','urban4.jpg']
+  },
+  {
+    id:'06',
+    title:'L./AB c/o Off-White',
+    category:'FASHION / POST-PRODUCTION',
+    role:'Post Production',
+    year:'2026',
+    description:'I worked on post-production and retouching for the L./AB c/o Off-White campaign.',
+    cover:'offwhite2.jpg',
+    media:['offwhite2.jpg','offwhite3.jpg','offwhite4.jpg','offwhite5.jpg','offwhite6.jpg','offwhite7.jpg'],
+    credits:[
+      {role:'Photography',name:'@lukeabby'},
+      {role:'Styling',name:'@georgia.pendlebury'},
+      {role:'Hair',name:'@rubyhowes'},
+      {role:'Makeup',name:'@leana.ardeleanu'},
+      {role:'Produced by',name:'@peterschwab_'},
+      {role:'Production',name:'@commonvision.film'},
+      {role:'Head of Client Service',name:'@johannalauragerhardt'},
+      {role:'Art Director',name:'@marcj23'},
+      {role:'Head of Creative',name:'@thomasjohnlee'},
+      {role:'Creative',name:'@antoineenault'},
+      {role:'Casting',name:'@alyciacohen'},
+      {role:'Post Production',name:'Stanislav Ryabchik'},
+      {role:'Set Design',name:'@studiobritz'}
+    ]
   }
 ];
 
@@ -400,6 +425,12 @@ function project(p) {
         '</section>'
       ].join('') : '',
       '<div class="case-gallery">',gallery(p),'</div>',
+      p.credits && p.credits.length ? [
+        '<section class="case-credits" aria-label="Project credits">',
+          '<h2 class="case-credits-heading micro">CREDITS</h2>',
+          '<dl class="case-credits-list">',p.credits.map(credit => '<div class="case-credit"><dt>'+e(credit.role)+'</dt><dd>'+e(credit.name)+'</dd></div>').join(''),'</dl>',
+        '</section>'
+      ].join('') : '',
       '<a href="',route(next.id),'" class="next-project" aria-label="Next project: ',e(next.title),'">',
         '<span class="next-label micro"><span>NEXT PROJECT</span></span>',
         '<h2 class="next-project-title',next.title.length > 16 ? ' next-project-title-long' : '','"><span class="next-project-name">',e(next.title),'</span><span class="next-project-arrow" aria-hidden="true"><svg class="external-arrow-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M8 5h11v11"/></svg></span></h2>',
