@@ -32,7 +32,7 @@ const PROJECTS = [
     year:'2024–2026',
     description:'I developed the visual identity and festival communications for Ukraine Design Week across 2024–2026.',
     cover:'project ukraine design 3.2.jpg',
-    media:['project ukraine design 3.2.jpg','project ukraine design week 3.4.jpg','ukraine design.WEBP','ukraine design.JPG','project ukraine design 3.3.mp4']
+    media:['project ukraine design 3.2.jpg','project ukraine design week 3.4.jpg','ukraine design.WEBP','ukraine design.JPG','ukraine design 1.jpg','btnv6891 copy.jpg','5237-scaled copy.jpg','5046-scaled copy.jpg','project ukraine design 3.3.mp4']
   },
   {
     id:'04',
