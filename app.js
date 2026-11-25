@@ -24,7 +24,7 @@ const PROJECTS = [
     year:'2025',
     description:'I worked on visual design for beauty brand HATICE SCHMIDT in collaboration with a studio in 2025.',
     cover:'project hatice schmidt 2.3.jpg',
-    media:['project hatice.mp4','project hatice 2.2.jpg','project hatice schmidt 2.3.jpg','Screen Recording 2026-11-25 at 13.47.33.mov','Screen Recording 2026-11-25 at 13.49.48.mov']
+    media:['project hatice.mp4','project hatice 2.2.jpg','project hatice schmidt 2.3.jpg','Screen Recording 2026-11-25 at 13.47.33.mp4','Screen Recording 2026-11-25 at 13.49.48.mp4']
   },
   {
     id:'03',
