@@ -1126,3 +1126,28 @@ html[data-theme="dark"] .skip-link {background:#e9e9e4;color:#171715;}
  }
  .case-website-link {font-size: 12px;}
 }
+
+/* Place external website access within the project metadata row. */
+.case-meta:has(.case-meta-website) {
+  grid-template-columns: repeat(4,minmax(0,1fr)) minmax(145px,.7fr);
+  align-items:start;
+}
+.case-meta-website {display:flex;justify-content:flex-end;align-items:center;min-width:0;}
+.case-meta-website .case-website-link {
+  min-height:0;
+  margin:0;
+  padding:2px 0 5px;
+  font-size:clamp(11px,.9vw,14px);
+  white-space:nowrap;
+}
+@media(max-width:900px){
+ .case-meta:has(.case-meta-website) {
+   grid-template-columns:repeat(2,minmax(0,1fr));
+   align-items:start;
+ }
+ .case-meta-website {justify-content:flex-start;}
+}
+@media(max-width:620px){
+ .case-meta-website {align-items:flex-start;}
+ .case-meta-website .case-website-link {margin-top:4px;}
+}

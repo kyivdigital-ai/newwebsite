@@ -416,15 +416,13 @@ function project(p) {
         '<div><span class="meta-key">DISCIPLINE</span><span class="meta-value">',e(p.category),'</span></div>',
         '<div><span class="meta-key">ROLE / CREDITS</span><span class="meta-value">',e(p.role),'</span></div>',
         '<div><span class="meta-key">YEAR</span><span class="meta-value">',e(p.year),'</span></div>',
-      '</div>',
-      p.website ? [
-        '<div class="case-website-row">',
-          '<a class="case-website-link" href="',e(p.website),'" target="_blank" rel="noopener noreferrer" aria-label="Visit ',e(p.title),' official website (opens in new tab)">',
+        p.website ? [
+          '<div class="case-meta-website"><a class="case-website-link" href="',e(p.website),'" target="_blank" rel="noopener noreferrer" aria-label="Visit ',e(p.title),' website (opens in new tab)">',
             '<span>VISIT WEBSITE</span>',
             '<svg class="external-arrow-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M8 5h11v11"/></svg>',
-          '</a>',
-        '</div>'
-      ].join('') : '',
+          '</a></div>'
+        ].join('') : '',
+      '</div>',
       p.id === '05' ? [
         '<section class="project-process" aria-label="Upcoming Urban project status">',
           '<div class="project-process-head">',
