@@ -45,7 +45,7 @@ const PROJECTS = [
     year:'2025–2026',
     description:'I designed the Future Systems website and worked on photo retouching and post-production for still and moving images.',
     cover:'future system 1.jpg',
-    media:['future system 1.jpg','future system 2.jpg','future system 3.jpg','future system 5.mp4','future system 6.mp4']
+    media:['future system 1.jpg','future system 2.jpg','future system 3.jpg']
   },
   {
     id:'05',
