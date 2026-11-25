@@ -1239,3 +1239,35 @@ html[data-theme="dark"] .skip-link {background:#e9e9e4;color:#171715;}
  .case-meta-website .case-website-link,
  .case-meta-website .case-website-link.meta-value {margin:0;font-size:13px;}
 }
+
+/* Ukraine Design Week: pair landscape with landscape, portrait with portrait.
+   Each pairing is dimension-aware; no cropping or stretching. */
+@media (min-width: 701px) {
+  .case--03 .case-gallery {
+    display:flex;
+    flex-direction:column;
+    gap:clamp(18px, 2.5vw, 40px);
+  }
+  .case--03 .gallery-orientation-pair {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:clamp(18px,2.5vw,40px);
+    align-items:start;
+  }
+  .case--03 .gallery-orientation-pair > .gallery-item {
+    min-width:0;
+    margin:0;
+    width:100%;
+  }
+}
+@media (max-width: 700px) {
+  .case--03 .gallery-orientation-pair {
+    display:flex;
+    flex-direction:column;
+    gap:clamp(22px,6vw,36px);
+  }
+  .case--03 .gallery-orientation-pair > .gallery-item {
+    width:100%;
+    min-width:0;
+  }
+}

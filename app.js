@@ -404,6 +404,50 @@ function gallery(p) {
     return '<figure class="gallery-item'+(/\.(mp4|mov)$/i.test(file) ? ' gallery-item--video' : '')+'">'+media+'</figure>';
   }).join('');
 }
+/**
+ * Pair media by their actual image dimensions on the Ukraine Design Week case.
+ * Rows never mix landscape and portrait images. Images maintain natural ratio.
+ * Other case studies and the one-column mobile layout are left unchanged.
+ */
+function arrangeUkraineGallery() {
+  const galleryEl = root.querySelector('.case--03 .case-gallery');
+  if (!galleryEl) return;
+  const figures = Array.from(galleryEl.children);
+  const getGroup = figure => {
+    const img = figure.querySelector('img');
+    const video = figure.querySelector('video');
+    const width = img ? img.naturalWidth : (video ? video.videoWidth : 0);
+    const height = img ? img.naturalHeight : (video ? video.videoHeight : 0);
+    if (!width || !height) return 'landscape';
+    const aspect = width / height;
+    return aspect >= 1.05 ? 'landscape' : aspect <= .95 ? 'portrait' : 'square';
+  };
+  const loadImages = figures.map(figure => new Promise(resolve => {
+    const img = figure.querySelector('img');
+    if (!img || (img.complete && img.naturalWidth)) { resolve(); return; }
+    img.loading = 'eager';
+    img.addEventListener('load',resolve,{once:true});
+    img.addEventListener('error',resolve,{once:true});
+    if (img.complete) resolve();
+  }));
+  Promise.all(loadImages).then(() => {
+    if (!galleryEl.isConnected) return;
+    const grouped = {landscape:[],portrait:[],square:[]};
+    figures.forEach(fig => grouped[getGroup(fig)].push(fig));
+    const fragment = document.createDocumentFragment();
+    for (const kind of ['landscape','portrait','square']) {
+      const entries = grouped[kind];
+      for (let i=0; i<entries.length; i+=2) {
+        const pair = document.createElement('div');
+        pair.className = 'gallery-orientation-pair gallery-orientation-pair--'+kind;
+        pair.append(...entries.slice(i,i+2));
+        fragment.appendChild(pair);
+      }
+    }
+    galleryEl.replaceChildren(fragment);
+  });
+}
+
 function project(p) {
   const next = PROJECTS[(PROJECTS.indexOf(p)+1)%PROJECTS.length];
   document.title = p.title + ' — Stanislav';
@@ -454,6 +498,7 @@ function project(p) {
   ].join('');
   navigation(null);
   initViewportAutoplay('.case-video');
+  if (p.id === '03') arrangeUkraineGallery();
 }
 
 function archive() {
