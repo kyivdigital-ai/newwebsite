@@ -22,7 +22,7 @@ const PROJECTS = [
     year:'2025',
     description:'I worked on visual design for beauty brand HATICE SCHMIDT in collaboration with a studio in 2025.',
     cover:'project hatice schmidt 2.3.jpg',
-    media:['project hatice.mp4','project hatice 2.2.jpg','project hatice schmidt 2.3.jpg']
+    media:['project hatice.mp4','project hatice 2.2.jpg','project hatice schmidt 2.3.jpg','Screen Recording 2026-11-25 at 13.47.33.mov','Screen Recording 2026-11-25 at 13.49.48.mov']
   },
   {
     id:'03',
@@ -390,12 +390,13 @@ function gallery(p) {
   return p.media.map((file,i) => {
     const number = String(i+1).padStart(2,'0');
     let media;
-    if (/\.mp4$/i.test(file)) {
-      media = '<video class="case-video" controls autoplay muted loop playsinline preload="none" aria-label="Video '+number+' from '+e(p.title)+'"><source src="'+mediaFile(file)+'" type="video/mp4">Video playback is not supported.</video>';
+    if (/\.(mp4|mov)$/i.test(file)) {
+      const mediaType = /\.mov$/i.test(file) ? 'video/quicktime' : 'video/mp4';
+      media = '<video class="case-video" controls autoplay muted loop playsinline preload="metadata" aria-label="Video '+number+' from '+e(p.title)+'"><source src="'+mediaFile(file)+'" type="'+mediaType+'">Video playback is not supported.</video>';
     } else {
       media = '<img src="'+mediaFile(file)+'" alt="'+e(p.title)+', archive image '+number+'" loading="'+(i===0?'eager':'lazy')+'" decoding="async">';
     }
-    return '<figure class="gallery-item'+(/\.mp4$/i.test(file) ? ' gallery-item--video' : '')+'">'+media+'</figure>';
+    return '<figure class="gallery-item'+(/\.(mp4|mov)$/i.test(file) ? ' gallery-item--video' : '')+'">'+media+'</figure>';
   }).join('');
 }
 function project(p) {
