@@ -45,7 +45,7 @@ const PROJECTS = [
     year:'2025–2026',
     description:'I designed the Future Systems website and worked on photo retouching and post-production for still and moving images.',
     cover:'future system 1.jpg',
-    media:['future system 1.jpg','future system 2.jpg','future system 3.jpg']
+    media:['future system 1.jpg','future system 2.jpg','future system 3.jpg','future system 5.mp4','future system 6.mp4']
   },
   {
     id:'05',
@@ -95,10 +95,8 @@ const ARCHIVE_REEL_MEDIA = [
   "video2.mp4",
   "another project 27.jpg",
   "video7.mp4",
-  "video8.mp4",
   "another project11.jpg",
   "video4.mp4",
-  "video3.mp4",
   "another project 33.jpg"
 ];
 
@@ -126,7 +124,6 @@ const ARCHIVE_MEDIA = [
   'another project14.jpg',
   'another project29.jpg',
   'another project4.jpg',
-  'video8.mp4',
   'another project 32.jpg',
   'another project 30.jpg',
   'another project5.jpg',
@@ -136,7 +133,6 @@ const ARCHIVE_MEDIA = [
   'another project16.jpg',
   'another project19.jpg',
   'another project1.jpg',
-  'video3.mp4',
   'another project28.jpg',
   'another project31.jpg',
   'another project23.jpg'
