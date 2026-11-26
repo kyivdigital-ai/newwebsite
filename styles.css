@@ -1323,3 +1323,12 @@ html[data-theme="dark"] .contact-pill {
   .work-link .hover-preview {grid-column:1;grid-row:3;}
   .archive-index-row .archive-index-link {grid-template-rows:auto;}
 }
+
+/* All interface icons are vector shapes, not emoji glyphs. */
+.theme-icon { display:block; width:20px; height:20px; flex:none; }
+.theme-icon-sun { display:none; }
+html[data-theme="dark"] .theme-icon-half { display:none; }
+html[data-theme="dark"] .theme-icon-sun { display:inline; }
+.back-arrow-icon { display:block; width:18px; height:18px; flex:none; fill:none; stroke:currentColor; stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round; transition:transform .2s; }
+.back-button:hover .back-arrow-icon { transform:translateX(-5px); }
+@media (prefers-reduced-motion:reduce) { .back-arrow-icon { transition:none; } }

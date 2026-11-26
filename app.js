@@ -172,8 +172,6 @@ function initSiteTools() {
       button.setAttribute('aria-pressed',String(dark));
       button.setAttribute('aria-label',dark ? 'Switch to light mode' : 'Switch to dark mode');
       button.setAttribute('title',dark ? 'Light mode' : 'Dark mode');
-      const glyph = button.querySelector('span');
-      if (glyph) glyph.textContent = dark ? '☀' : '◐';
     }
     if (themeMeta) themeMeta.setAttribute('content',dark ? '#171717' : '#f5f5f5');
   };
@@ -242,7 +240,8 @@ function initBerlinClock() {
       const weather = root.querySelector('#berlin-weather');
       const credit = root.querySelector('#berlin-weather-credit');
       if (!weather || !credit || !Number.isFinite(data.temperature)) return;
-      weather.textContent = (data.condition || 'Weather') + ' ' + data.temperature + '°';
+      const condition = String(data.condition || '').replace(/[^\p{L}\p{M}\s-]/gu, '').replace(/\s+/g, ' ').trim();
+      weather.textContent = (condition || 'Weather') + ' ' + data.temperature + '°';
       weather.hidden = false;
       credit.hidden = false;
     })
@@ -447,7 +446,7 @@ function project(p) {
   document.title = p.title + ' — Stanislav';
   root.innerHTML = [
     '<article class="case case--',p.id,'">',
-      '<div class="case-topline"><a class="back-button" href="#/"><span class="arrow">←</span> BACK TO INDEX</a></div>',
+      '<div class="case-topline"><a class="back-button" href="#/"><svg class="back-arrow-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12H4M11 5l-7 7 7 7"/></svg> BACK TO INDEX</a></div>',
       '<header class="case-head"><h1 class="case-title',p.title.length > 21 ? ' case-title-long' : '','">',e(p.title),'</h1><div class="case-deck">',e(p.description),'</div></header>',
       '<div class="case-meta project-meta">',
         '<div><span class="meta-key">PROJECT</span><span class="meta-value">',e(p.title),'</span></div>',
