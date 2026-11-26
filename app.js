@@ -53,7 +53,7 @@ const PROJECTS = [
     category:'Branding / Web design',
     role:'Branding / Web Design',
     year:'2027',
-    description:'I’m developing the visual identity and website for Urban, scheduled for 2027.',
+    description:'I’m developing the visual identity and website for Urban, a work in progress for 2027.',
     cover:'urban1.jpg',
     media:['urban1.jpg','urban 2.jpg','urban3.jpg','urban 4.jpg','urban 5.jpg','urban4.jpg']
   },
@@ -286,6 +286,7 @@ function home() {
         '<a class="contact-poster" href="mailto:hi.stanislavryabchik@gmail.com" aria-label="Email Stanislav about a project or collaboration">',
           '<span class="contact-poster-text">Got an idea?<br>Let’s make something happen.</span>',
           '<span class="contact-poster-mark" aria-hidden="true">SR</span>',
+          '<span class="contact-poster-action">Email me</span>',
         '</a>',
         '<div class="contact-column">',
           '<h2 class="contact-pill">Selected clients</h2>',
@@ -448,7 +449,6 @@ function project(p) {
       '<div class="case-topline"><a class="back-button" href="#/"><svg class="back-arrow-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12H4M11 5l-7 7 7 7"/></svg> Back to index</a></div>',
       '<header class="case-head"><h1 class="case-title',p.title.length > 21 ? ' case-title-long' : '','">',e(p.title),'</h1><div class="case-deck">',e(p.description),'</div></header>',
       '<div class="case-meta project-meta">',
-        '<div><span class="meta-key">Project</span><span class="meta-value">',e(p.title),'</span></div>',
         '<div><span class="meta-key">Discipline</span><span class="meta-value">',e(p.category),'</span></div>',
         '<div><span class="meta-key">Role / Credits</span><span class="meta-value">',e(p.role),'</span></div>',
         '<div><span class="meta-key">Year</span><span class="meta-value">',e(p.year),'</span></div>',
@@ -462,13 +462,6 @@ function project(p) {
           '</div>'
         ].join('') : '',
       '</div>',
-      p.id === '05' ? [
-        '<section class="project-process" aria-label="Upcoming Urban project status">',
-          '<div class="project-process-main">',
-            '<span class="project-process-title">In development</span>',
-          '</div>',
-        '</section>'
-      ].join('') : '',
       '<div class="case-gallery">',gallery(p),'</div>',
       p.credits && p.credits.length ? [
         '<section class="case-credits" aria-label="Project credits">',
