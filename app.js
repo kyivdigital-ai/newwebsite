@@ -8,7 +8,7 @@ const PROJECTS = [
     id:'01',
     title:'PDF Magazine',
     website:'https://pdf-mag.com/',
-    category:'EDITORIAL / PUBLISHING',
+    category:'Editorial / Publishing',
     role:'Art Direction / Editorial Design',
     year:'2025–2026',
     description:'I developed the art direction and editorial design for PDF Magazine, a publication about music and art, drawing inspiration from the early issues of The Face.',
@@ -19,7 +19,7 @@ const PROJECTS = [
     id:'02',
     title:'Hatice Schmidt',
     website:'https://haticeschmidt.com/',
-    category:'BEAUTY / DESIGN',
+    category:'Beauty / Design',
     role:'Design / Studio Collaboration',
     year:'2025',
     description:'I worked on visual design for beauty brand HATICE SCHMIDT in collaboration with a studio in 2025.',
@@ -29,7 +29,7 @@ const PROJECTS = [
   {
     id:'03',
     title:'Ukraine Design Week',
-    category:'BRAND IDENTITY / VISUAL COMMUNICATION',
+    category:'Brand identity / Visual communication',
     role:'Art Direction / Visual Identity',
     year:'2024–2026',
     description:'I developed the visual identity and festival communications for Ukraine Design Week across 2024–2026.',
@@ -40,7 +40,7 @@ const PROJECTS = [
     id:'04',
     title:'Future Systems',
     website:'https://futuresystems.services/',
-    category:'CREATIVE / PRODUCTION',
+    category:'Creative / Production',
     role:'Web Design / Retouching / Post-Production',
     year:'2025–2026',
     description:'I designed the Future Systems website and worked on photo retouching and post-production for still and moving images.',
@@ -50,7 +50,7 @@ const PROJECTS = [
   {
     id:'05',
     title:'Upcoming Urban',
-    category:'BRANDING / WEB DESIGN',
+    category:'Branding / Web design',
     role:'Branding / Web Design',
     year:'2027',
     description:'I’m developing the visual identity and website for Urban, scheduled for 2027.',
@@ -61,7 +61,7 @@ const PROJECTS = [
     id:'06',
     title:'L./AB c/o Off-White',
     website:'https://www.off---white.com/de-de/lab-universe/',
-    category:'FASHION / POST-PRODUCTION',
+    category:'Fashion / Post-production',
     role:'Post Production',
     year:'2026',
     description:'I worked on post-production and retouching for the L./AB c/o Off-White campaign.',
@@ -263,7 +263,6 @@ function home() {
       '<article class="work-row archive-index-row">',
         '<a class="work-link archive-index-link" href="#/archive" aria-label="Open visual archive">',
           '<span class="work-title archive-index-title">Archive</span>',
-          '<span class="work-label micro" aria-hidden="true"></span>',
           
         '</a>',
         '<div class="archive-reel-wrap">',
@@ -446,16 +445,16 @@ function project(p) {
   document.title = p.title + ' — Stanislav';
   root.innerHTML = [
     '<article class="case case--',p.id,'">',
-      '<div class="case-topline"><a class="back-button" href="#/"><svg class="back-arrow-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12H4M11 5l-7 7 7 7"/></svg> BACK TO INDEX</a></div>',
+      '<div class="case-topline"><a class="back-button" href="#/"><svg class="back-arrow-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12H4M11 5l-7 7 7 7"/></svg> Back to index</a></div>',
       '<header class="case-head"><h1 class="case-title',p.title.length > 21 ? ' case-title-long' : '','">',e(p.title),'</h1><div class="case-deck">',e(p.description),'</div></header>',
       '<div class="case-meta project-meta">',
-        '<div><span class="meta-key">PROJECT</span><span class="meta-value">',e(p.title),'</span></div>',
-        '<div><span class="meta-key">DISCIPLINE</span><span class="meta-value">',e(p.category),'</span></div>',
-        '<div><span class="meta-key">ROLE / CREDITS</span><span class="meta-value">',e(p.role),'</span></div>',
-        '<div><span class="meta-key">YEAR</span><span class="meta-value">',e(p.year),'</span></div>',
+        '<div><span class="meta-key">Project</span><span class="meta-value">',e(p.title),'</span></div>',
+        '<div><span class="meta-key">Discipline</span><span class="meta-value">',e(p.category),'</span></div>',
+        '<div><span class="meta-key">Role / Credits</span><span class="meta-value">',e(p.role),'</span></div>',
+        '<div><span class="meta-key">Year</span><span class="meta-value">',e(p.year),'</span></div>',
         p.website ? [
           '<div class="case-meta-website">',
-            '<span class="meta-key">WEBSITE</span>',
+            '<span class="meta-key">Website</span>',
             '<a class="case-website-link meta-value" href="',e(p.website),'" target="_blank" rel="noopener noreferrer" aria-label="Visit ',e(p.title),' website (opens in new tab)">',
               '<span>Visit website</span>',
               '<svg class="external-arrow-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M8 5h11v11"/></svg>',
@@ -467,19 +466,18 @@ function project(p) {
         '<section class="project-process" aria-label="Upcoming Urban project status">',
           '<div class="project-process-main">',
             '<span class="project-process-title">In development</span>',
-            '<div class="project-process-track" aria-hidden="true"><span class="project-process-runner"></span></div>',
           '</div>',
         '</section>'
       ].join('') : '',
       '<div class="case-gallery">',gallery(p),'</div>',
       p.credits && p.credits.length ? [
         '<section class="case-credits" aria-label="Project credits">',
-          '<h2 class="case-credits-heading micro">CREDITS</h2>',
+          '<h2 class="case-credits-heading micro">Credits</h2>',
           '<dl class="case-credits-list">',p.credits.map(credit => '<div class="case-credit"><dt>'+e(credit.role)+'</dt><dd>'+e(credit.name)+'</dd></div>').join(''),'</dl>',
         '</section>'
       ].join('') : '',
       '<a href="',route(next.id),'" class="next-project" aria-label="Next project: ',e(next.title),'">',
-        '<span class="next-label micro"><span>NEXT PROJECT</span></span>',
+        '<span class="next-label micro"><span>Next project</span></span>',
         '<h2 class="next-project-title',next.title.length > 16 ? ' next-project-title-long' : '','"><span class="next-project-name">',e(next.title),'</span><span class="next-project-arrow" aria-hidden="true"><svg class="external-arrow-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M8 5h11v11"/></svg></span></h2>',
       '</a>',
     '</article>'
@@ -505,8 +503,8 @@ function archive() {
             '<div class="archive-player">',
               '<video class="archive-video" src="',source,'" autoplay muted loop playsinline preload="none" aria-label="Archive film ',n,'"></video>',
               '<div class="archive-controls">',
-                '<button type="button" class="archive-play" aria-label="Play archive film ',n,'">PLAY</button>',
-                '<button type="button" class="archive-sound" aria-label="Unmute archive film ',n,'">SOUND OFF</button>',
+                '<button type="button" class="archive-play" aria-label="Play archive film ',n,'">Play</button>',
+                '<button type="button" class="archive-sound" aria-label="Unmute archive film ',n,'">Unmute</button>',
               '</div>',
             '</div>',
           '</figure>'
@@ -530,11 +528,11 @@ function initArchiveVideos() {
     const playButton = player.querySelector('.archive-play');
     const soundButton = player.querySelector('.archive-sound');
     video.addEventListener('play', () => {
-      playButton.textContent = 'PAUSE';
+      playButton.textContent = 'Pause';
       playButton.setAttribute('aria-label','Pause archive video');
     });
     video.addEventListener('pause', () => {
-      playButton.textContent = 'PLAY';
+      playButton.textContent = 'Play';
       playButton.setAttribute('aria-label','Play archive video');
     });
     playButton.addEventListener('click', () => {
@@ -550,12 +548,12 @@ function initArchiveVideos() {
       const wasMuted = video.muted;
       videos.forEach(other => { other.muted = true; });
       root.querySelectorAll('.archive-sound').forEach(button => {
-        button.textContent = 'SOUND OFF';
+        button.textContent = 'Unmute';
         button.setAttribute('aria-label','Unmute archive video');
       });
       video.muted = !wasMuted;
       if (!video.muted) {
-        soundButton.textContent = 'SOUND ON';
+        soundButton.textContent = 'Mute';
         soundButton.setAttribute('aria-label','Mute archive video');
         delete video.dataset.userPaused;
         video.play().catch(() => {});
@@ -572,13 +570,48 @@ function initArchiveVideos() {
           video.pause();
           video.muted = true;
           const sound = video.closest('.archive-player').querySelector('.archive-sound');
-          sound.textContent = 'SOUND OFF';
+          sound.textContent = 'Unmute';
           sound.setAttribute('aria-label','Unmute archive video');
         }
       });
     }, {threshold:0.25, rootMargin:'40px 0px 40px 0px'});
     videos.forEach(video => archiveObserver.observe(video));
   }
+}
+
+function initMediaFeedback() {
+  root.querySelectorAll('.case-video, .archive-video').forEach(video => {
+    const host = video.closest('.archive-player') || video.closest('.gallery-item');
+    if (!host || host.querySelector('.media-feedback')) return;
+    const status = document.createElement('span');
+    status.className = 'media-feedback';
+    status.setAttribute('role','status');
+    status.setAttribute('aria-live','polite');
+    status.hidden = true;
+    host.appendChild(status);
+    let timer;
+    const clear = () => { clearTimeout(timer); status.hidden = true; };
+    const fail = () => {
+      clearTimeout(timer);
+      status.textContent = 'Video unavailable';
+      status.hidden = false;
+    };
+    const loading = () => {
+      clearTimeout(timer);
+      if (video.error) { fail(); return; }
+      if (video.paused && !video.autoplay) return;
+      timer = setTimeout(() => {
+        if (!host.isConnected || video.readyState >= 3 || video.error) return;
+        status.textContent = 'Loading video…';
+        status.hidden = false;
+      }, 450);
+    };
+    ['waiting','stalled','seeking','play'].forEach(event => video.addEventListener(event,loading));
+    ['playing','canplay','seeked','pause','ended'].forEach(event => video.addEventListener(event,clear));
+    video.addEventListener('error',fail);
+    video.querySelectorAll('source').forEach(source => source.addEventListener('error',fail));
+    if (video.error || video.networkState === 3) fail();
+  });
 }
 
 function render() {
@@ -593,6 +626,7 @@ function render() {
     if (p) project(p); else home();
   } else if (path === 'archive') archive();
   else home();
+  initMediaFeedback();
   window.scrollTo({top:0,behavior:'instant'});
 }
 window.addEventListener('hashchange',render);
