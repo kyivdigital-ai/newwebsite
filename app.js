@@ -53,7 +53,7 @@ const PROJECTS = [
     category:'BRANDING / WEB DESIGN',
     role:'Branding / Web Design',
     year:'2027',
-    description:'I’m developing the branding and website for Urban. A work in progress for 2027.',
+    description:'I’m developing the visual identity and website for Urban, scheduled for 2027.',
     cover:'urban1.jpg',
     media:['urban1.jpg','urban 2.jpg','urban3.jpg','urban 4.jpg','urban 5.jpg','urban4.jpg']
   },
@@ -175,7 +175,7 @@ function initSiteTools() {
       const glyph = button.querySelector('span');
       if (glyph) glyph.textContent = dark ? '☀' : '◐';
     }
-    if (themeMeta) themeMeta.setAttribute('content',dark ? '#171717' : '#f5f5f1');
+    if (themeMeta) themeMeta.setAttribute('content',dark ? '#171717' : '#f5f5f5');
   };
   apply(stored);
   if (button) button.addEventListener('click',() => {
@@ -255,19 +255,17 @@ function home() {
     '<section class="work-list" id="work" aria-label="Selected work">',
       PROJECTS.map((p,i) => [
         '<article class="work-row"><a class="work-link" href="', route(p.id), '" aria-label="Open ', e(p.title), '">',
-        '<span class="work-index micro">',p.id,'</span>',
         '<span class="work-title',p.title.length > 21 ? ' work-title-long' : '','">',e(p.title),'</span>',
         '<span class="work-label micro">',e(p.category),'</span>',
-        '<span class="work-arrow" aria-hidden="true"><svg class="external-arrow-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M8 5h11v11"/></svg></span>',
+        
         '<img class="hover-preview" src="',mediaFile(p.cover),'" alt="" loading="',i<2?'eager':'lazy','">',
         '</a></article>'
       ].join('')).join(''),
       '<article class="work-row archive-index-row">',
         '<a class="work-link archive-index-link" href="#/archive" aria-label="Open visual archive">',
-          '<span class="work-index micro">06</span>',
           '<span class="work-title archive-index-title">Archive</span>',
           '<span class="work-label micro" aria-hidden="true"></span>',
-          '<span class="work-arrow" aria-hidden="true"><svg class="external-arrow-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M8 5h11v11"/></svg></span>',
+          
         '</a>',
         '<div class="archive-reel-wrap">',
           '<div class="archive-reel" id="archive-reel" role="region" aria-label="Scroll through archive photos and videos" tabindex="0">',
@@ -468,15 +466,10 @@ function project(p) {
       '</div>',
       p.id === '05' ? [
         '<section class="project-process" aria-label="Upcoming Urban project status">',
-          '<div class="project-process-head">',
-            '<span class="micro">STATUS / 2027</span>',
-            '<span class="project-process-live"><span class="project-process-dot" aria-hidden="true"></span>IN DEVELOPMENT</span>',
-          '</div>',
           '<div class="project-process-main">',
-            '<span class="project-process-title">Still making<br>things.</span>',
+            '<span class="project-process-title">In development</span>',
             '<div class="project-process-track" aria-hidden="true"><span class="project-process-runner"></span></div>',
           '</div>',
-          '<div class="project-process-foot micro">BRANDING / WEB DESIGN — WORK IN PROGRESS</div>',
         '</section>'
       ].join('') : '',
       '<div class="case-gallery">',gallery(p),'</div>',
@@ -502,7 +495,7 @@ function archive() {
   root.innerHTML = [
     '<section class="archive-page" aria-label="Visual archive">',
       '<div class="archive-mast">',
-        '<h1 class="archive-heading">Archive<span>.</span></h1>',
+        '<h1 class="archive-heading">Archive</h1>',
       '</div>',
       '<div class="archive-grid">',
       ARCHIVE_MEDIA.map((file,i) => {
