@@ -13,7 +13,7 @@ const PROJECTS = [
     year:'2025–2026',
     description:'I developed the art direction and editorial design for PDF Magazine, a publication about music and art, drawing inspiration from the early issues of The Face.',
     cover:'project pdf 1.2.jpg',
-    media:['project pdf 1.jpg','project pdf 1.1.jpg','project pdf 1.2.jpg','project pdf 1.3.jpg','project pdf 1.4.jpg','project pdf 1.5.jpg','project pdf 1.6.jpg','project pdf 1.7.jpg','project pdf 1.8.mp4','pdf mag.mp4',"IMG_4999.jpg","IMG_4998.jpg","IMG_4996.jpg","IMG_4995.jpg","✦˚₊‧ PDF Magazine ‧₊˚✦ @pdf_mag_ A Berlin-Athens-based independent living document of pop cultur 2.mp4"]
+    media:['project pdf 1.jpg','project pdf 1.1.jpg','project pdf 1.2.jpg','project pdf 1.3.jpg','project pdf 1.4.jpg','project pdf 1.5.jpg','project pdf 1.6.jpg','project pdf 1.7.jpg','pdf-mag-spreads.jpg','project pdf 1.8.mp4','pdf mag.mp4',"IMG_4999.jpg","IMG_4998.jpg","IMG_4996.jpg","IMG_4995.jpg","✦˚₊‧ PDF Magazine ‧₊˚✦ @pdf_mag_ A Berlin-Athens-based independent living document of pop cultur 2.mp4"]
   },
   {
     id:'02',
